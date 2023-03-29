@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import Validation from 'src/app/helpers/validation';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit{
    
   });
   submitted = false;
-  constructor(private formBuilder: FormBuilder,private auth: AuthService) {}
+
+  constructor(private formBuilder: FormBuilder,private auth: AuthService, private _router : Router) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -68,8 +70,10 @@ export class LoginComponent implements OnInit{
       (res) => {
         console.log(res);
         localStorage.setItem('token', res.token);
+        this._router.navigate(['/admin-dashboard'])
       },
       (err) => console.log(err)
     );
+
   }
 }

@@ -10,10 +10,28 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { NewSurveyComponent } from './components/new-survey/new-survey.component';
 import { NewSurveyInputCardComponent } from './components/new-survey/new-survey-input-card/new-survey-input-card.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { SurveyCardComponent } from './components/survey-card/survey-card.component';
+import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey-details-intro/survey-details-intro.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, LoginComponent, HeaderComponent, NewSurveyComponent, NewSurveyInputCardComponent],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    SignupComponent,
+    LoginComponent,
+    HeaderComponent,
+    NewSurveyComponent,
+    NewSurveyInputCardComponent,
+    AdminDashboardComponent,
+    SurveyCardComponent,
+    SurveyDetailsIntroComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
