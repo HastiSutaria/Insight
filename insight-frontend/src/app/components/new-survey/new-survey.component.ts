@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-new-survey',
   templateUrl: './new-survey.component.html',
-  styleUrls: ['./new-survey.component.css']
+  styleUrls: ['./new-survey.component.css'],
 })
-export class NewSurveyComponent {
-  name: String = 'Argusoft Survey'
-  description: String = 'This is a simple survey form.'
+export class NewSurveyComponent implements OnInit {
+  name: String = '';
+  description: String = '';
+  
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  addShortAnswer() {
-    
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      console.log(params['name'], params['description'])
+      this.name = params['name'];
+      this.description = params['description'];
+    });
   }
+
+  addShortAnswer() {}
 }
