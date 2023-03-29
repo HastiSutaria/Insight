@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class NewSurveyInputCardComponent {
   inputType: String = 'Short Answer Text'
+  
+  onChangeQuestionType() {
+
+  }
 }

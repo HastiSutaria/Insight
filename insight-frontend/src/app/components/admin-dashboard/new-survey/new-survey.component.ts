@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -18,7 +19,18 @@ export class NewSurveyComponent implements OnInit {
       this.name = params['name'];
       this.description = params['description'];
     });
+    this.initForm()
   }
 
-  addShortAnswer() {}
+  newInputForm!: FormGroup;
+
+  private initForm() {
+    this.newInputForm = new FormGroup({
+
+    })
+  }
+
+  onSubmit() {}
+
+  onAddInput() {}
 }

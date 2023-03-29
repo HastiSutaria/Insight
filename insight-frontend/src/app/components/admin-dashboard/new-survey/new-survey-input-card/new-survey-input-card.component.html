@@ -1,6 +1,18 @@
 <div class="card m-3">
     <div>
-        <h3 class="card-header"><input placeholder="Untitled Question" type="text"/></h3>
+        <div class="float-end">
+            <select
+            class="form-select"
+            (change)="onChangeQuestionType()"
+                  >
+            <option value="singleSelection">Single Selection</option>
+            <option value="multipleSelection">Multiple Selection</option>
+            <option value="freeText">Open Question</option>
+            <option value="titleQuestion">Title Question</option>
+                  </select>
+        </div>
+        <h3 class="card-header"><input placeholder="Untitled Question" type="text"/>
+        </h3>
         <div class="card-body">
             <input type="text" disabled [placeholder]="inputType">
         </div>
