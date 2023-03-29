@@ -8,9 +8,11 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
+import { NewSurveyComponent } from './components/new-survey/new-survey.component';
+import { NewSurveyInputCardComponent } from './components/new-survey/new-survey-input-card/new-survey-input-card.component';
 
 @NgModule({
-  declarations: [AppComponent, SignupComponent, LoginComponent, HeaderComponent],
+  declarations: [AppComponent, SignupComponent, LoginComponent, HeaderComponent, NewSurveyComponent, NewSurveyInputCardComponent],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
