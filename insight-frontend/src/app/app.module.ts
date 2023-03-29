@@ -13,6 +13,7 @@ import { NewSurveyInputCardComponent } from './components/admin-dashboard/new-su
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { SurveyCardComponent } from './components/survey-card/survey-card.component';
 import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey-details-intro/survey-details-intro.component';
+import { NewFormBuilderComponent } from './components/admin-dashboard/new-form-builder/new-form-builder.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey
     AdminDashboardComponent,
     SurveyCardComponent,
     SurveyDetailsIntroComponent,
+    NewFormBuilderComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,11 +8,12 @@
         </h6>
       </div>
     </div>
+    <!-- <form [formGroup]="newInputForm" (ngSubmit)="onSubmit()">
+      <button class="btn btn-success" (click)="onAddInput()">New Input</button>
+    </form> -->
+    <form [formGroup]="newInputForm">
+      <app-new-form-builder [newInputForm]="newInputForm"></app-new-form-builder>
+    </form>
     <app-new-survey-input-card></app-new-survey-input-card>
-  </div>
-  <div class="m-3">
-    <div class='m-3'><button (click)="addShortAnswer()">Short Answer Question</button></div>
-    <div class="m-3"><button (click)="addShortAnswer()">Short Answer Question</button></div>
-    <div class="m-3"><button (click)="addShortAnswer()">Short Answer Question</button></div>
   </div>
 </div>
