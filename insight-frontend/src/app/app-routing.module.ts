@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey-details-intro/survey-details-intro.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 
@@ -17,6 +19,22 @@ const routes: Routes = [
     path: 'signup',
     component: SignupComponent,
   },
+  {
+    path: 'admin-dashboard',
+    component : AdminDashboardComponent,
+    children: [
+      {
+        path: 'survey-details', // child route path
+        component: SurveyDetailsIntroComponent, // child route component that the router renders
+      },
+      // {
+      //   path: 'child-b',
+      //   component: ChildBComponent, // another child route component that the router renders
+      // },
+    ],
+  },
+
+ 
 ];
 
 @NgModule({
