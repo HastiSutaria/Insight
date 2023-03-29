@@ -9,6 +9,7 @@
           formControlName="fullname"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['fullname'].errors }"
+          autocomplete="on"
         />
         <div *ngIf="submitted && f['fullname'].errors" class="invalid-feedback">
           <div *ngIf="f['fullname'].errors['required']">Fullname is required</div>
@@ -22,6 +23,7 @@
           formControlName="username"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
+          autocomplete="on"
         />
         <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
           <div *ngIf="f['username'].errors['required']">Username is required</div>
@@ -41,6 +43,7 @@
           formControlName="email"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+          autocomplete="on"
         />
         <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
           <div *ngIf="f['email'].errors['required']">Email is required</div>
@@ -55,6 +58,7 @@
           formControlName="password"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+          autocomplete="on"
         />
         <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
           <div *ngIf="f['password'].errors['required']">Password is required</div>
@@ -74,6 +78,7 @@
           formControlName="confirmPassword"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['confirmPassword'].errors }"
+          autocomplete="on"
         />
         <div
           *ngIf="submitted && f['confirmPassword'].errors"

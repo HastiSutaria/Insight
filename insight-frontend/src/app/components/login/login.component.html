@@ -10,6 +10,7 @@
           formControlName="email"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+          autocomplete="on"
         />
         <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
           <div *ngIf="f['email'].errors['required']">Email is required</div>
@@ -24,6 +25,7 @@
           formControlName="password"
           class="form-control"
           [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+          autocomplete="on"
         />
         <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
           <div *ngIf="f['password'].errors['required']">Password is required</div>
