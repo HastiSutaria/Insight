@@ -1,19 +1,24 @@
 <div class="d-flex justify-content-center">
-  <div>
-    <div class="card m-3">
-      <div>
-        <h1 class="card-header">{{ name }}</h1>
-        <h6 class="card-body">
-          <i>{{ description }}</i>
-        </h6>
-      </div>
+  <div class="card mt-3 w-50 ">
+    <h1 class="card-header">
+      {{ name}}
+    </h1>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p> {{ description }} </p>
+  
+      </blockquote>
     </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <div>
     <!-- <form [formGroup]="newInputForm" (ngSubmit)="onSubmit()">
       <button class="btn btn-success" (click)="onAddInput()">New Input</button>
     </form> -->
-    <form [formGroup]="newInputForm">
+    <form [formGroup]="newInputForm" class="mt-3">
       <app-new-form-builder [newInputForm]="newInputForm"></app-new-form-builder>
     </form>
-    <app-new-survey-input-card></app-new-survey-input-card>
+    
   </div>
 </div>

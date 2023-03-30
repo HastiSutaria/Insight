@@ -38,6 +38,8 @@ export class NewFormBuilderComponent {
 
   async addNewQuestion(i: number, type: string) {
     let questionList = this.newInputForm.get('questionList') as FormArray;
+    // console.log(questionList)
+    console.log(this.newInputForm)
     questionList.insert(i + 1, this.newTextFormGroup);
   }
 

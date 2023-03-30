@@ -37,14 +37,14 @@
       <textarea formControlName="text" class="form-control m-2"></textarea>
     </div>
     <div>
-      <select
+      <select 
         formControlName="type"
-        class="form-select"
-        (change)="onChangeQuestionType(questionFormGroup.get('orderNo').value)"
+        class="form-select mt-2"
+         (change)="onChangeQuestionType(questionFormGroup.get('orderNo').value)"
       >
-        <option value="singleSelection">Single Selection</option>
-        <option value="multipleSelection">Multiple Selection</option>
-        <option value="freeText">Open Question</option>
+        <option value="singleSelection">Radio Button</option>
+        <option value="multipleSelection">Check Boxes</option>
+        <option value="freeText">Short Answer</option>
         <option value="titleQuestion">Title Question</option>
       </select>
     </div>
@@ -79,11 +79,8 @@
             )['controls'];
             let i = index
           "
-          cdkDrag
+         
         >
-          <div class="col-1 draggable">
-            <i class="material-icons text-muted">drag_indicator</i>
-          </div>
           <div class="col-7" [formGroupName]="i">
             <div class="form-check">
               <label
@@ -102,7 +99,7 @@
                   formControlName="value"
                   placeholder="Answer value"
                 ></textarea>
-                <div
+                <!-- <div
                   *ngIf="offeredAnswer.value.remarkAnswer"
                   class="col mt-1 mb-2"
                 >
@@ -113,16 +110,18 @@
                     placeholder="insert your remark"
                     disabled
                   />
-                </div>
+                </div> -->
               </label>
             </div>
           </div>
-          <div class="col-3">
-            <div class="row">
-              <a href="javascript:void(0)" (click)="addNewRadioOption(i)"
-                >Add Option</a
-              >
-              <a
+          <div class="col-1">
+            
+              <i
+                type="button"
+                (click)="addNewRadioOption(i)"
+                class="bi bi-plus-circle"
+              ></i>
+              <!-- <a
                 *ngIf="!offeredAnswer.value.remarkAnswer"
                 href="javascript:void(0)"
                 (click)="onRemarkModeChange(i, true)"
@@ -133,18 +132,77 @@
                 href="javascript:void(0)"
                 (click)="onRemarkModeChange(i, false)"
                 >Remove remark</a
-              >
-            </div>
+              > -->
+            
           </div>
           <div class="col-1">
             <i
               type="button"
               class="material-icons text-muted pointer"
               (click)="removeRadioAnswer(i)"
-              >close</i
-            >
+              class="bi bi-trash"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'multipleSelection'">
+      <div
+        formGroupName="question"
+        cdkDropList
+        (cdkDropListDropped)="dropCheckBoxAnswer($event)"
+      >
+        <div
+          formArrayName="offeredAnswers"
+          class="row"
+          *ngFor="
+            let offeredAnswer of questionFormGroup.get(
+              'question.offeredAnswers'
+            )['controls'];
+            let i = index
+          "
+         
+        >
+          <div class="col-7" [formGroupName]="i">
+            <div class="form-check">
+              <label
+                class="form-check-label"
+                [for]="'offeredAnswer' + offeredAnswer.value.orderNo"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  (change)="onSelectCheckBox(offeredAnswer, i)"
+                  [name]="'offeredAnswer' + offeredAnswer.value.orderNo"
+                />
+                <textarea
+                  class="form-control"
+                  type="text"
+                  formControlName="value"
+                  placeholder="Answer value"
+                ></textarea>
+              </label>
+            </div>
+          </div>
+          <div class="col-1">
+            
+              <i
+                type="button"
+                (click)="addNewCheckBoxOption(i)"
+                class="bi bi-plus-circle"
+              ></i>
+          </div>
+          <div class="col-1">
+            <i
+              type="button"
+              class="material-icons text-muted pointer"
+              (click)="removeCheckBox(i)"
+              class="bi bi-trash"
+            ></i>
           </div>
         </div>
       </div>
     </div>
   </div>
+  </ng-template>

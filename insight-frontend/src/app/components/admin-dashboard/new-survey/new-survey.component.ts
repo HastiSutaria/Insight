@@ -19,26 +19,50 @@ export class NewSurveyComponent implements OnInit {
       type: ['question'],
       required: [true],
       question: this.fb.group({
-        text: ['What is your favourite fruit?'],
-        placeholder: ['e.g Apple, Tomato, etc'],
+        text: ['Question'],
+        placeholder: ['xxx'],
         type: ['freeText'],
         selectedAnswer: [''],
         offeredAnswers: this.fb.array([]),
       }),
     });
+    let checkboxFormGroup = this.fb.group({
+     id : ['q1'],
+     orderNo: [3],
+     type: ['question'],
+     required: [true],
+     question : this.fb.group({
+      text : ['Multiple selection'],
+      type : ['multipleSelection'],
+      selectedAnswer: ['first Answer'],
+        offeredAnswers: this.fb.array([
+          this.fb.group({
+            id: ['01'],
+            orderNo: [0],
+            value: ['option 1'],
+            remarkAnswer: [false],
+            remarkAnswerValue: [''],
+          }),
+          this.fb.group({
+            id: ['02'],
+            orderNo: [1],
+            value: ['option 2'],
+            remarkAnswer: [false],
+            remarkAnswerValue: [''],
+          }),
+          this.fb.group({
+            id: ['03'],
+            orderNo: [2],
+            value: ['Others'],
+            remarkAnswer: [true],
+            remarkAnswerValue: [''],
+          }),
+        ]),
 
-    let titleFormGroup = this.fb.group({
-      id: ['q1'],
-      orderNo: [0],
-      type: ['title'],
-      required: [true],
-      title: this.fb.group({
-        text: ['AMLCFT'],
-        description: ['question title'],
-        type: ['title'],
-      }),
-    });
+     })
+    })
 
+   
     let radioFormGroup = this.fb.group({
       id: ['q1'],
       orderNo: [2],
@@ -75,9 +99,10 @@ export class NewSurveyComponent implements OnInit {
     });
     this.newInputForm = this.fb.group({
       questionList: this.fb.array([
-        titleFormGroup,
+        
         freeTextFormGroup,
         radioFormGroup,
+        checkboxFormGroup
       ]),
     });
   }

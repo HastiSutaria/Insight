@@ -1,9 +1,5 @@
 <!-- title card -->
 
-<div #title class="card p-2 m-2" cdkDrag>
-    <h1>Dynamic form samples</h1>
-    <!-- <i class="material-icons">add</i> -->
-  </div>
   <div
     [formGroup]="newInputForm"
     class="container mt-3"
@@ -33,7 +29,7 @@
                 type="button"
                 (click)="deleteQuestion(i)"
               >
-                delete
+               <i class="bi bi-trash"></i>
               </div>
               <div class="form-check p-2 pt-0">
                 <input
@@ -43,7 +39,7 @@
                   name="isRequired"
                 />
                 <label class="form-check-label" for="isRequired">
-                  mandatory</label
+                  Required</label
                 >
               </div>
             </div>
