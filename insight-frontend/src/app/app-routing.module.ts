@@ -5,6 +5,7 @@ import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey
 import { LoginComponent } from './components/login/login.component';
 import { NewSurveyComponent } from './components/admin-dashboard/new-survey/new-survey.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'newSurvey',
     component: NewSurveyComponent,
+  },
+  {
+    path: 'user-dashboard',
+    component: UserDashboardComponent
   },
   {
     path: 'admin-dashboard',
