@@ -66,7 +66,7 @@ export class NewSurveyComponent implements OnInit {
     // this.http.post('http://localhost:3000/create/form', this.FinalBody, { observe: 'body' }).subscribe((response: any) => {
     //   let dialogRef = this.dialog.open(DialogElementsExampleDialog, {
     //     data: {
-    //       url: window.location.origin+`/forms/${response.slug}/view/form`
+    //       url: window.location.origin+`/forms/${response.key}/view/form`
           
     //     },
     //     height: '400px',
