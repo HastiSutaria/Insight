@@ -37,9 +37,9 @@ export class NewSurveyComponent implements OnInit {
 
   onAddInputElement(){
     this.addingInputElement = true;
-    if (this.dynamicInputs.length < 1) {
-      this.formName = this.dynamicForm.value.name;
-    }
+    // if (this.dynamicInputs.length < 1) {
+    //   this.formName = this.dynamicForm.value.name;
+    // }
     
 
     setTimeout(() => {

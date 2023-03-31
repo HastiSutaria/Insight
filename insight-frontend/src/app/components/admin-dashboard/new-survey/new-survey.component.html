@@ -1,123 +1,177 @@
 <div class="d-flex justify-content-center">
-  <div class="card mt-3 w-50 ">
+  <div class="card mt-3 w-50">
     <h1 class="card-header">
-      {{ formName}}
+      {{ formName }}
     </h1>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <p> {{ description }} </p>
+        <p>{{ description }}</p>
       </blockquote>
     </div>
   </div>
 </div>
-<hr>
+<hr />
 
-<form class="dynamicForm" [formGroup]="dynamicForm" (ngSubmit)="onAddInputElement()">
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Enter Your Question</label>
-    <input
-      class="form-control"
-      type="text"
-      placeholder="enter your question"
-      formControlName="question"
-      
-    />
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Select Response Type</label>
-    <select
-      class="form-control"
-      id="exampleFormControlSelect1"
-      formControlName="type"
-      
+<div class="d-flex justify-content-center">
+  <div class="w-50">
+    <form
+      [formGroup]="dynamicForm"
+      class="form-control p-4"
+      (ngSubmit)="onAddInputElement()"
     >
-      <option selected>Select Type of Input</option>
-      <option *ngFor="let type of inputTypes">{{ type }}</option>
-    </select>
-  </div>
-  <div
-  formArrayName="options"
-  *ngIf="this.dynamicForm.get('type').value === 'radio' || this.dynamicForm.get('type').value==='checkbox' || this.dynamicForm.get('type').value==='select'"
->
-<a style="cursor: pointer;" (click)="onAddOption()" ><i class="bi bi-plus"></i></a>
-  <!-- <button  type="button">Add Option</button> -->
-  <div
-    *ngFor="
-      let controls of dynamicForm.get('options')['controls'];
-      let i = index
-    "
-  >
-    <label for="option{{ i }}">Option {{ i + 1 }}</label>
-    <span style="display: flex;">
-      <input type="text" placeholder="enter option" [formControlName]="i"  />
-      <a style="cursor: pointer;" (click)="onDeleteOption(i)"><i class="bi bi-trash"></i></a>
-    </span>
- 
-  </div>
-</div>
-<button class="btn btn-primary" type="submit">Add</button>
-<div *ngIf="addingInputElement" class="lds-dual-ring"></div>
-
-</form>
-
-<form class="surveyForm" #surveyForm="ngForm" (ngSubmit)="onSubmitSurveyForm(surveyForm)">
-  <div *ngFor="let input of dynamicInputs; let i = index">
-    <div *ngIf="input.type === 'paragraph'" class="form-group">
-      <label for="paragraph{{ i }}">{{ input.label }}</label>
-      <input
-        class="form-control"
-        type="text"
-        placeholder="Enter response"
-        name="question{{ i }}"
-        ngModel
-        required
-        #paragraph="ngModel"
-        disabled
-      />
-    </div>
-    <div class="form-group form-check" *ngIf="input.type === 'date'">
-      <label for="DateQuestion">{{ input.label }}</label>
-
-      
+      <div class="input-group input-group-lg">
+        <!-- <label for="exampleFormControlSelect1">Enter Your Question</label> -->
+        <span class="input-group-text">Question</span>
         <input
-          type="date"
           class="form-control"
-          id="DateQuestion"
-          ngModel
-          disabled
+          type="text"
+          placeholder="Enter your question"
+          formControlName="question"
         />
-       
-    
-    </div>
-    <div *ngIf="input.type === 'radio'">
-      <label for="radioButtonQuestion">{{ input.label }}</label>
-      <div *ngFor="let option of input.options; let z = index">
-        <div class="radio">
-          <label for="radioButtonOption{{ z }}"
-            ><input
-              type="radio"
-              name="optradio"
-              id="radioButtonOption{{ z }}"
-              disabled
-            />{{ option }}</label
+      </div>
+
+      <div class="input-group mt-2">
+        <span class="input-group-text pe-4" for="inputGroupSelect02"
+          >Input Type</span
+        >
+        <select class="form-select" formControlName="type">
+          <option selected>Select Type of Input</option>
+          <option *ngFor="let type of inputTypes">{{ type }}</option>
+        </select>
+      </div>
+
+      <!--  -->
+      <!-- Dynamic Content -->
+      <!--  -->
+
+      <div
+        formArrayName="options"
+        *ngIf="
+          this.dynamicForm.get('type').value === 'radio' ||
+          this.dynamicForm.get('type').value === 'checkbox' ||
+          this.dynamicForm.get('type').value === 'select'
+        "
+      >
+        <button
+          class="btn btn-secondary mt-2 mr-2"
+          type="button"
+          (click)="onAddOption()"
+        >
+          Add Option
+        </button>
+        <div
+          *ngFor="
+            let controls of dynamicForm.get('options')['controls'];
+            let i = index
+          "
+          class="mt-2"
+        >
+          <label for="option{{ i }}"
+            ><strong>Option {{ i + 1 }}. </strong></label
           >
+          <span style="display: flex; align-items: center">
+            <input
+              type="text"
+              placeholder="enter option"
+              [formControlName]="i"
+              class="form-control"
+            />
+            <a
+              style="cursor: pointer; margin-left: 10px"
+              (click)="onDeleteOption(i)"
+              ><i class="bi bi-trash"></i
+            ></a>
+          </span>
         </div>
       </div>
-    </div>
-    <div *ngIf="input.type === 'select'">
-      <label for="selectInputQuestion">{{ input.label }}</label>
-      <select class="form-control" id="exampleFormControlSelect" name="SelectQuestion" disabled>
-        <option selected>Select Type of Input</option>
-        <option *ngFor="let option of input.options" value="{{option}}">{{
-          option
-        }}</option>
-      </select>
-    </div>
+      <button class="btn btn-primary mt-2" type="submit">Add</button>
+      <div *ngIf="addingInputElement" class="lds-dual-ring"></div>
+    </form>
   </div>
-  <ng-template [ngIf]="dynamicInputs.length>0"
-    ><button type="submit" class="btn btn-primary" >Save</button>
-  </ng-template>
-  
-</form>
+</div>
 
+<div class="d-flex justify-content-center">
+  <div class="w-50">
+    <form
+      class="form-control p-4 mt-4"
+      #surveyForm="ngForm"
+      (ngSubmit)="onSubmitSurveyForm(surveyForm)"
+    >
+      <div
+        *ngFor="let input of dynamicInputs; let i = index"
+        id="displayFormInputs"
+      >
+        <!-- Paragraph -->
+        <div *ngIf="input.type === 'paragraph'" class="form-group">
+          <label for="paragraph{{ i }}"
+            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+          >
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Enter response"
+            name="question{{ i }}"
+            ngModel
+            required
+            #paragraph="ngModel"
+            disabled
+          />
+        </div>
 
+        <!-- Date -->
+        <div *ngIf="input.type === 'date'" class="form-group">
+          <label for="DateQuestion"
+            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+          >
+
+          <input
+            type="date"
+            class="form-control"
+            id="DateQuestion"
+            ngModel
+            disabled
+          />
+        </div>
+
+        <!-- Radio -->
+        <div *ngIf="input.type === 'radio'">
+          <label for="radioButtonQuestion"
+            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+          >
+          <div *ngFor="let option of input.options; let z = index">
+            <div class="radio">
+              <label for="radioButtonOption{{ z }}"
+                ><input
+                  type="radio"
+                  name="optradio"
+                  id="radioButtonOption{{ z }}"
+                  disabled
+                />{{ option }}</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Select -->
+        <div *ngIf="input.type === 'select'">
+          <label for="selectInputQuestion"
+            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+          >
+          <select
+            class="form-select"
+            id="exampleFormControlSelect"
+            name="SelectQuestion"
+          >
+            <option selected>Select Type of Input</option>
+            <option *ngFor="let option of input.options" value="{{ option }}">
+              {{ option }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <ng-template [ngIf]="dynamicInputs.length > 0"
+        ><button type="submit" class="btn btn-primary">Save</button>
+      </ng-template>
+    </form>
+  </div>
+</div>
