@@ -1,16 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors')
-const port = 8000;
+const express  = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+const mongoose = require('./app/utils/database');
+const router = require('./app/routes/routes');
 
-const app= express();
-app.use(cors());
-const api=require('./app/routes/api')
-app.use(bodyParser.json())
 
-app.use('/api',api)
-app.get('/',(req,res)=>{
-    res.send("hello")
+app.use((req,res,next)=>{
+    res.setHeader("Access-Control-Allow-Origin","*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin,X-Requested-With, Content-Type,Accept")
+    res.setHeader("Access-Control-Allow-Methods","GET,POST,PATCH,DELETE,OPTIONS");
+    next();
 })
+app.use(express.json());
 
-app.listen(port,()=>console.log("server is listening on port "+ port))
+app.use(router);
+app.listen(PORT,()=>{
+    console.log(`Server connected at ${PORT}`);
+})
