@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -63,23 +63,6 @@ export class NewSurveyComponent implements OnInit {
     console.log(this.formName)
     this.FinalBody.name = this.formName
     this.FinalBody.dynamicInputs = this.dynamicInputs;
-    // this.http.post('http://localhost:3000/create/form', this.FinalBody, { observe: 'body' }).subscribe((response: any) => {
-    //   let dialogRef = this.dialog.open(DialogElementsExampleDialog, {
-    //     data: {
-    //       url: window.location.origin+`/forms/${response.key}/view/form`
-          
-    //     },
-    //     height: '400px',
-    //     width: '600px',
-    //   });
-    //   dialogRef.afterClosed().subscribe(result => {
-    //     this.route.navigate(['/']);
-    //   });
-    // }, (error) => {
-    //   this.snackbar.open(error.message, "Dismiss", {
-    //     duration: 2000
-    //   })
-    // })
   }
 
   onDeleteOption(index: number) {
@@ -88,3 +71,4 @@ export class NewSurveyComponent implements OnInit {
 
   
 }
+

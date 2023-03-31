@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit{
   loginUser(loginUserData: any) {
     this.auth.loginUser(loginUserData).subscribe(
       (res) => {
-        console.log(res);
+        console.log('Working', res);
         localStorage.setItem('token', res.token);
         this._router.navigate(['/admin-dashboard'])
       },

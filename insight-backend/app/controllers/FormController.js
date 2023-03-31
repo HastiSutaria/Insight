@@ -1,8 +1,8 @@
 const Forms = require("../models/form");
 const Questions = require("../models/question");
-const randomString = require("randomstring");
 const User = require("../models/user")
-
+const randomString = require("randomstring");
+const jwt = require("jsonwebtoken");
 module.exports = {
   
   register: async (req, res) => {

@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import Validation from 'src/app/helpers/validation';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -24,7 +25,7 @@ export class SignupComponent implements OnInit {
     acceptTerms: new FormControl(false),
   });
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private auth: AuthService) {}
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private _router: Router) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -85,6 +86,7 @@ export class SignupComponent implements OnInit {
       (res) => {
         console.log(res);
         localStorage.setItem('token', res.token);
+        this._router.navigate(['/admin-dashboard'])
       },
       (err) => console.log(err)
     );
