@@ -81,7 +81,7 @@ module.exports = {
 				throw { statusCode: 404, message: "MISSING_PARAMS" };
 			}
 			conditions.key = data.key;
-			const form = await Forms.findOne(conditions).populate("questions");
+			const form = await Form.findOne(conditions).populate("questions");
 			if (!form) {
 				throw { statusCode: 404, message: "Form_NOT_FOUND" };
 			}
@@ -95,7 +95,7 @@ module.exports = {
 
 	getSurveys: async (req, res) => {
 		try {
-			const form = await Forms.find();
+			const form = await Form.find();
 			if (form.length === 0) {
 				throw { error: "NOT_FOUND", statusCode: 404 };
 			}
@@ -116,7 +116,7 @@ module.exports = {
 			if (data.responses[0].email !== undefined) {
 				email = data.responses[0].email;
 			}
-			const form = await Forms.findOne({ key: data.key });
+			const form = await Form.findOne({ key: data.key });
 			const questionIds = form.questions;
 
 			data.responses.forEach(async (response, index) => {
@@ -144,7 +144,7 @@ module.exports = {
 			if (!data.key) {
 				throw new Error("MISSING_PARAMS");
 			}
-			const form = await Forms.findOne({ key: data.key }).populate("questions");
+			const form = await Form.findOne({ key: data.key }).populate("questions");
 			if (!form) {
 				throw new Error("FORM_NOT_FOUND");
 			}

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { FormDataService } from 'src/app/services/form-data.service';
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
@@ -7,8 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AdminDashboardComponent {
   newForm: Boolean = false
+  surveys;
   createForm() {
     console.log('callled  ')
     this.newForm = true
+  }
+  
+  constructor(private formService: FormDataService) {}
+  ngOnInit(): void {
+    this.formService.getSurveys();
+    this.formService.subject.subscribe((surveys) => {
+      this.surveys = surveys;
+    });
+    console.log(this.surveys);
   }
 }
