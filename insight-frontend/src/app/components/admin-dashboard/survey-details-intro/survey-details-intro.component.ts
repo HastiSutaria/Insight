@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-survey-details-intro',
@@ -8,12 +8,13 @@ import { Router } from '@angular/router';
 })
 export class SurveyDetailsIntroComponent {
   
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private activeRoute: ActivatedRoute) {}
 
   name: String = ''
   description: String = ''
   createForm() {
-      this._router.navigate(['/newSurvey'], {
+      this._router.navigate(['newSurvey'], {
+        // relativeTo: this.activeRoute,
         queryParams: {
           name: this.name,
           description: this.description

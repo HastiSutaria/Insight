@@ -24,3 +24,14 @@
 .alert-box-actions{
     text-align: right;
 }
+
+.clk-button {
+    background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
+    color: white;
+    /* float: right; */
+  }
+  
+  .clk-button:hover {
+    background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
+  }
+  

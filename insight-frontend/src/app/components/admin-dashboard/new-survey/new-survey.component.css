@@ -4,35 +4,38 @@
 }
 
 #displayFormInputs > * {
-  margin: 10px 0;
-}
-.lds-dual-ring {
-  position: absolute;
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-  bottom: 80px;
-  right:250px;
-  z-index: 10;
-}
-.lds-dual-ring:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  margin: 1.5rem 0.5rem;
 }
 
+label {
+  margin-bottom: 0.7rem;
+}
 
+.input-question {
+  border-left: 10px solid #212529;
+}
+
+.clk-button-add {
+  background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
+  color: white;
+  float: right;
+}
+
+.clk-button {
+  background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
+  color: white;
+  /* float: right; */
+}
+
+.clk-button:hover {
+  background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
+}
+
+.question-label {
+  font-size: 24px;
+}
+
+.bi {
+  color: black;
+
+}

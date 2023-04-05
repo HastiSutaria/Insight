@@ -18,7 +18,9 @@ export class NewSurveyComponent implements OnInit {
   
   inputTypes: string[] = ['paragraph','date', 'radio', 'select'];
 
-  constructor( private activatedRoute: ActivatedRoute) {}
+  constructor( private activatedRoute: ActivatedRoute) {
+    console.log('YAyyyy iamm callleddd')
+  }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
@@ -28,7 +30,8 @@ export class NewSurveyComponent implements OnInit {
     });
 
     this.dynamicForm = new FormGroup({
-      // 'name': new FormControl(null),
+      'name': new FormControl(this.formName),
+      'description' : new FormControl(this.description),
       'question': new FormControl(null, Validators.required),
       'type': new FormControl(null, [Validators.required]),
       'options': new FormArray([], Validators.required)
@@ -63,6 +66,8 @@ export class NewSurveyComponent implements OnInit {
     console.log(this.formName)
     this.FinalBody.name = this.formName
     this.FinalBody.dynamicInputs = this.dynamicInputs;
+    
+
   }
 
   onDeleteOption(index: number) {

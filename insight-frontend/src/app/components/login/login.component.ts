@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit{
    
   });
   submitted = false;
+  error = ''
 
   constructor(private formBuilder: FormBuilder,private auth: AuthService, private _router : Router) {}
 
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit{
         localStorage.setItem('token', res.token);
         this._router.navigate(['/admin-dashboard'])
       },
-      (err) => console.log(err)
+      (err) => alert(err.error)
     );
 
   }

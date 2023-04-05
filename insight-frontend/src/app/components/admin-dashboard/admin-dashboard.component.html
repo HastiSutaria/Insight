@@ -1,13 +1,29 @@
 <div class="container">
+   <div class="mt-4">
     <h1> My workspace </h1>
-<button type="button" class="btn btn-primary btn-lg" (click)="createForm()"><i class="bi bi-file-earmark-plus"></i> Create Survey</button>
+   </div>
+<button type="button" class="btn clk-button " (click)="createForm()"><i class="bi bi-file-earmark-plus"></i> Create Survey</button>
 <div *ngIf="newForm">
     <app-survey-details-intro></app-survey-details-intro>
 </div>
 <hr>
-<div class="surveys">
-    <h3>Surveys</h3>
-    <app-survey-card></app-survey-card>
-    <app-survey-card></app-survey-card>
+<div class="surveys m-2">
+    <h2>Surveys</h2>
+ 
+    
+    <div class="row">
+        <div class="col-sm">
+            <app-survey-card></app-survey-card>
+        </div>
+        <div class="col-sm">
+            <app-survey-card></app-survey-card>
+        </div>
+        <div class="col-sm">
+            <app-survey-card></app-survey-card>
+        </div>
+        <div class="col-sm">
+            <app-survey-card></app-survey-card>
+        </div>
+    </div>
     
 </div>

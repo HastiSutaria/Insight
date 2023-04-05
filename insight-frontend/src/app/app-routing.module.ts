@@ -25,22 +25,21 @@ const routes: Routes = [
     path: 'newSurvey',
     component: NewSurveyComponent,
   },
+  
   {
     path: 'user-dashboard',
     component: UserDashboardComponent
-  },
+  },     
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
     children: [
+     
       {
         path: 'survey-details', // child route path
         component: SurveyDetailsIntroComponent, // child route component that the router renders
-      },
-      // {
-      //   path: 'child-b',
-      //   component: ChildBComponent, // another child route component that the router renders
-      // },
+      }
+    
     ],
   },
 ];

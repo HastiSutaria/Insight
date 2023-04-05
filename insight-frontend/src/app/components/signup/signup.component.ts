@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit {
     }
 
     // const userData = JSON.stringify(this.form.value);
-    console.log(this.form.value)
+    // console.log(this.form.value)
     // let registerUserData = {
     //     fullname: this.form.
     // }
@@ -84,11 +84,11 @@ export class SignupComponent implements OnInit {
   registerUser(registerUserData: any) {
     this.auth.registerUser(registerUserData).subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
         localStorage.setItem('token', res.token);
         this._router.navigate(['/admin-dashboard'])
       },
-      (err) => console.log(err)
+      (err) => alert(err.error)
     );
   }
 }
