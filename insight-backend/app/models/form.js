@@ -1,25 +1,24 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const FormSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:true   
-                       
-    },
-    description: {
-        type: String,
-        required: true,
-    },
-    key:{
-        type:String,
-        required:true
-    },
-    is_deleted:{
-        type:Number,
-        default:0
-    },
-    questions:[{type:mongoose.Schema.Types.ObjectId,ref:'Question'}]
-})
+	name: {
+		type: String,
+		required: true,
+	},
+	description: {
+		type: String,
+		required: true,
+	},
+	key: {
+		type: String,
+		required: true,
+	},
+	is_deleted: {
+		type: Number,
+		default: 0,
+	},
+	questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
+});
 
-const Forms = mongoose.model('Form',FormSchema);
+const Form = mongoose.model("Form", FormSchema);
 
-module.exports = Forms;
+module.exports = Form;

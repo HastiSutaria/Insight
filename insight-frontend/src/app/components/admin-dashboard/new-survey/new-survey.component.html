@@ -12,10 +12,13 @@
 </div>
 
 
+
+<div class="d-flex justify-content-center mt-4">
 <div class="d-flex justify-content-center mt-4">
   <div class="w-50">
     <form
       [formGroup]="dynamicForm"
+      class="form-control p-4 input-question"
       class="form-control p-4 input-question"
       (ngSubmit)="onAddInputElement()"
     >
@@ -63,6 +66,17 @@
         </div>
    
         
+        <div style="height: 30px;">
+          <button
+            class="btn btn-secondary mt-2 mr-2 clk-button-add"
+            type="button"
+            (click)="onAddOption()"
+          >
+            Add Option
+          </button>
+        </div>
+   
+        
         <div
           *ngFor="
             let controls of dynamicForm.get('options')['controls'];
@@ -83,7 +97,8 @@
             <a
             style="cursor: pointer; margin-left: 10px"
             (click)="onAddOption()"
-            ><i class="bi bi-plus"></i></a>
+            ><i class="bi bi-plus"></i
+          ></a>
             <a
               style="cursor: pointer; margin-left: 10px"
               (click)="onDeleteOption(i)"
@@ -91,6 +106,9 @@
             ></a>
           </span>
         </div>
+      </div>
+      <div style="height: 50px">
+        <button class="btn mt-3 clk-button" type="submit">Add</button>
       </div>
       <div style="height: 50px">
         <button class="btn mt-3 clk-button" type="submit">Add</button>
@@ -105,7 +123,12 @@
     class="form-control p-4 mt-4"
     #surveyForm="ngForm"
     (ngSubmit)="onSubmitSurveyForm(surveyForm)"
+    class="form-control p-4 mt-4"
+    #surveyForm="ngForm"
+    (ngSubmit)="onSubmitSurveyForm(surveyForm)"
     >
+    <h1>Preview Form</h1>
+    <hr>
     <h1>Preview Form</h1>
     <hr>
       <div
@@ -114,6 +137,7 @@
       >
         <!-- Paragraph -->
         <div *ngIf="input.type === 'paragraph'" class="form-group">
+          <label for="paragraph{{ i }}" class="question-label"
           <label for="paragraph{{ i }}" class="question-label"
             ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
           >
@@ -132,6 +156,7 @@
         <!-- Date -->
         <div *ngIf="input.type === 'date'" class="form-group">
           <label for="DateQuestion" class="question-label"
+          <label for="DateQuestion" class="question-label"
             ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
           >
 
@@ -141,12 +166,15 @@
             id="DateQuestion"
             [(ngModel)]="date"
             name="date"
+            [(ngModel)]="date"
+            name="date"
             disabled
           />
         </div>
 
         <!-- Radio -->
         <div *ngIf="input.type === 'radio'">
+          <label for="radioButtonQuestion" class="question-label"
           <label for="radioButtonQuestion" class="question-label"
             ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
           >
@@ -159,12 +187,19 @@
               /><label for="radioButtonOption{{ z }}" class="ps-2">{{
                 option
               }}</label>
+                type="radio"
+                name="optradio"
+                id="radioButtonOption{{ z }}"
+              /><label for="radioButtonOption{{ z }}" class="ps-2">{{
+                option
+              }}</label>
             </div>
           </div>
         </div>
 
         <!-- Select -->
         <div *ngIf="input.type === 'select'">
+          <label for="selectInputQuestion" class="question-label"
           <label for="selectInputQuestion" class="question-label"
             ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
           >
@@ -181,7 +216,11 @@
         </div>
       </div>
       
+      
       <ng-template [ngIf]="dynamicInputs.length > 0"
+        >
+        <div style="height: 30px"><button type="submit" class="btn clk-button-add">Save</button></div>
+       
         >
         <div style="height: 30px"><button type="submit" class="btn clk-button-add">Save</button></div>
        

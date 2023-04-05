@@ -1,6 +1,13 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { FormDataService } from 'src/app/services/form-data.service';
 
 @Component({
   selector: 'app-new-survey',
@@ -15,12 +22,10 @@ export class NewSurveyComponent implements OnInit {
   FinalBody: any = {};
   addingInputElement: Boolean = false;
   dynamicInputs = [];
-  
-  inputTypes: string[] = ['paragraph','date', 'radio', 'select'];
 
-  constructor( private activatedRoute: ActivatedRoute) {
-    console.log('YAyyyy iamm callleddd')
-  }
+  inputTypes: string[] = ['paragraph', 'date', 'radio', 'select'];
+
+  constructor(private activatedRoute: ActivatedRoute, private formDataService: FormDataService) {}
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
@@ -38,42 +43,44 @@ export class NewSurveyComponent implements OnInit {
     })
   }
 
-  onAddInputElement(){
+  onAddInputElement() {
     this.addingInputElement = true;
     // if (this.dynamicInputs.length < 1) {
     //   this.formName = this.dynamicForm.value.name;
     // }
-    
 
     setTimeout(() => {
       this.addingInputElement = false;
       this.dynamicInputs.push({
         label: this.dynamicForm.value.question,
         type: this.dynamicForm.value.type,
-        options: this.dynamicForm.value?.options
-
+        options: this.dynamicForm.value?.options,
       });
       this.dynamicForm.reset();
     }, 500);
-
   }
 
   onAddOption() {
     const formControl = new FormControl(null);
     (<FormArray>this.dynamicForm.get('options')).push(formControl);
   }
-  onSubmitSurveyForm(surveyForm: NgForm) {
-    console.log(this.formName)
-    this.FinalBody.name = this.formName
-    this.FinalBody.dynamicInputs = this.dynamicInputs;
-    
 
+  onSubmitSurveyForm(surveyForm: NgForm) {
+    console.log(this.formName);
+    console.log(surveyForm)
+
+    this.FinalBody.name = this.formName;
+    this.FinalBody.description = this.description;
+    this.FinalBody.dynamicInputs = this.dynamicInputs;
+    console.log(this.FinalBody)
+    this.formDataService.saveFormData(this.FinalBody).subscribe(res => {
+      console.log('response recieved')
+    }, error => {
+      console.log(error)
+    })
   }
 
   onDeleteOption(index: number) {
     (<FormArray>this.dynamicForm.get('options')).removeAt(index);
   }
-
-  
 }
-
