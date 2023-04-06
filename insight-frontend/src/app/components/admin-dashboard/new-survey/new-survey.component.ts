@@ -6,7 +6,7 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormDataService } from 'src/app/services/form-data.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class NewSurveyComponent implements OnInit {
 
   inputTypes: string[] = ['paragraph','checkbox', 'date', 'radio', 'select'];
 
-  constructor(private activatedRoute: ActivatedRoute, private formDataService: FormDataService) {}
+  constructor(private activatedRoute: ActivatedRoute, private formDataService: FormDataService, private router: Router) {}
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
@@ -75,6 +75,7 @@ export class NewSurveyComponent implements OnInit {
     console.log(this.FinalBody)
     this.formDataService.saveFormData(this.FinalBody).subscribe(res => {
       console.log('response recieved')
+      this.router.navigate(['/admin-dashboard'])
     }, error => {
       console.log(error)
     })
