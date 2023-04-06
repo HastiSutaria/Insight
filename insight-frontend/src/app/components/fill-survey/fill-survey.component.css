@@ -17,3 +17,8 @@ input.ng-invalid.ng-touched {
 #surveyForm > * {
     padding: 10px;
 }
+
+.surveyQuestions{
+    font-weight:500;
+    font-size: 1rem;
+}

@@ -18,4 +18,8 @@ export class UserDashboardComponent {
     });
     // console.log(this.surveys);
   }
+
+  getLink(ind: number) {
+    return '/fillSurvey/' + this.surveys[ind].key + '/form'
+  }
 }

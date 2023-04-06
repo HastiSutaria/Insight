@@ -1,20 +1,35 @@
-<div class="list-group">
-    <a
-      (click)="onClickViewResponse(email)"
-      *ngFor="let email of emails"
-      class="list-group-item list-group-item-action list-group-item-success"
-      >{{ email }}</a
-    >
-  </div>
-  <hr />
-  <ng-template [ngIf]="clicked">
-    <div class="card" *ngFor="let question of form.questions; let i = index">
-      <div class="card-header">{{ question.label }}</div>
-      <ng-template ngFor let-response [ngForOf]="question.responses">
-        <div *ngIf="response.email === selectedEmail" class="card-body">
-          {{ response.response }}
+<div class="container mt-4">
+    <div class="list-group">
+        <h2> Responses </h2>
+        <a
+          (click)="onClickViewResponse(email)"
+          *ngFor="let email of emails"
+          class="list-group-item list-group-item-action list-group-item-success "
+          >{{ email }}</a
+        >
+      </div>
+      <hr />
+      <ng-template [ngIf]="clicked">
+     
+        <div class="card m-4 " *ngFor="let question of form.questions; let i = index">
+          <div class="card-header">{{ question.label }}</div>
+          <ng-template ngFor let-response [ngForOf]="question.responses">
+            <div *ngIf="response.email === selectedEmail" class="card-body">
+              {{ response.response }}
+  
+            </div>
+          </ng-template>
         </div>
       </ng-template>
-    </div>
-  </ng-template>
-  
+    
+</div>
+<!-- <table mat-table class="mat-elevation-z8">
+    <ng-container *ngFor="let question  of form.questions; let i = index" matColumnDef="columnName">
+        <th mat-header-cell *matHeaderCellDef> {{question.label}} </th>
+        <td mat-cell *matCellDef="let element"> {{response.response}} </td>
+
+
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> -->

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormDataService } from 'src/app/services/form-data.service';
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-survey-responses',
@@ -13,7 +14,7 @@ export class SurveyResponsesComponent implements OnInit {
   emails:string[]=[];
   selectedEmail:string;
   clicked:Boolean;
-
+ 
   constructor(private activateRoute:ActivatedRoute,private formService:FormDataService ) { }
 
   ngOnInit(): void {
@@ -39,5 +40,6 @@ export class SurveyResponsesComponent implements OnInit {
     this.clicked = true;
     
   }
+
 
 }

@@ -1,4 +1,16 @@
+
 <div class="container w-75 p-5">
+
+  <div class="card mb-5">
+    <h1 class="card-header">
+      {{ form?.name  }}
+    </h1>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{ form?.description }}</p>
+      </blockquote>
+    </div>
+  </div>
   <form
     class="form-control p-3"
     #surveyForm="ngForm"
@@ -6,77 +18,67 @@
     id="surveyForm"
   >
     <div class="form-group">
-      <label for="email">Enter Your email</label>
+      <label class="surveyQuestions" for="email">Enter Your email</label>
+      <input
+        class="form-control"
+        placeholder="Enter Your email address"
+        name="email"
+        id="email"
+        ngModel
+        email
+        required
+        #email="ngModel"
+      />
+      <span *ngIf="!email.valid && email.touched" class="help-block"
+        >Please enter valid email</span
+      >
     </div>
-    <div *ngFor="let input of questions; let i = index">
-      <div *ngIf="input.type === 'paragraph'" class="form-group">
-        <label for="paragraph{{ i }}">{{ input.label }}</label>
 
-        <input
-          class="form-control"
-          placeholder="Enter Your email address"
-          name="email"
-          id="email"
-          ngModel
-          email
-          required
-          #email="ngModel"
-        />
-        <span *ngIf="!email.valid && email.touched" class="help-block"
-          >Please enter valid email</span
-        >
-      </div>
       <div *ngFor="let input of questions; let i = index">
         <div *ngIf="input.type === 'paragraph'" class="form-group">
-          <label for="paragraph{{ i }}">{{ input.label }}</label>
+          <label class="surveyQuestions" for="paragraph{{ i }}">{{ i + 1 }}. {{ input.label }}</label>
           <input
             class="form-control"
             type="text"
             placeholder="Enter response"
-            name="question{{ i }}"
+            name="{{ input.label }}"
             ngModel
             required
           />
         </div>
 
         <div *ngIf="input.type === 'date'" class="form-group">
-          <label for="checkboxQuestion{{ i }}">{{ input.label }}</label>
-          <!-- <span>
-          <input class="form-control" matInput [matDatepicker]="picker" />
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </span> -->
+          <label class="surveyQuestions" for="date{{ i }}">{{ i + 1 }}.  {{input.label}}</label><br>
           <mat-form-field appearance="outline">
+            
             <input
+            class="form-control w-25"
               matInput
-              formControlName="{{ input.label }}"
-              [matDatepicker]="releasedAtPicker"
-              (click)="releasedAtPicker.open()"
+              ngModel
+              name="{{ input.label }}"
+              [matDatepicker]="picker"
+              (click)="picker.open()"
+              required
             />
             <mat-datepicker-toggle
+              style="width: 30px;height: 30px;"
               matSuffix
-              [for]="releasedAtPicker"
+              [for]="picker"
             ></mat-datepicker-toggle>
-            <mat-datepicker #releasedAtPicker></mat-datepicker>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
-          <!-- <mat-form-field appearance="fill">
-          <mat-label>Choose a date</mat-label>
-          <input matInput [matDatepicker]="picker">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field> -->
+          
         </div>
 
         <div *ngIf="input.type === 'radio'">
-          <label for="radioButtonQuestion">{{ input.label }}</label>
+          <label class="surveyQuestions" for="radioButtonQuestion">{{ i + 1 }}.  {{ input.label }}</label>
 
           <div *ngFor="let option of input.options; let z = index">
-            <div class="radio">
+            <div class="radio m-2">
               <label for="radioButtonOption{{ z }}"
-                ><input
+                ><input class="m-1"
                   type="radio"
-                  name="optradio"
+                  name="{{ input.label }}"
                   id="radioButtonOption{{ z }}"
                   value="{{ option }}"
                   ngModel
@@ -87,9 +89,9 @@
           </div>
         </div>
         <div *ngIf="input.type === 'select'">
-          <label for="selectInputQuestion">{{ input.label }}</label>
+          <label class="surveyQuestions" for="selectInputQuestion">{{ i + 1 }}.  {{ input.label }}</label>
           <select
-            name="SelectInput"
+            name="{{ input.label }}"
             class="form-control"
             id="selectInputQuestion"
             ngModel
@@ -113,6 +115,5 @@
       >
         Save
       </button>
-    </div>
   </form>
 </div>

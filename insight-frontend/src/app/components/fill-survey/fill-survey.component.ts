@@ -25,7 +25,7 @@ constructor(private formService:FormDataService, private route: ActivatedRoute, 
       this.formService.formByKey.subscribe((form)=>{
         this.form = form;
         this.questions = this.form.questions;
-        // console.log(this.form);
+        console.log(this.form);
       })
       
   })
@@ -35,7 +35,7 @@ onSubmitSurveyForm(surveyForm:NgForm){
   this.result['key'] = this.key
   for (const id in  surveyForm.value ) {
     if(id!=='email'){
-      this.result.responses.push({email:surveyForm.value.email,response:surveyForm.value[id]})
+      this.result.responses.push({email:surveyForm.value.email, response:surveyForm.value[id]})
     }
   }
   
@@ -45,3 +45,7 @@ onSubmitSurveyForm(surveyForm:NgForm){
 }
 
 }
+/* 
+response: {key/name: 'email/DOB/gender', value: 'M/F', type: '124322'}
+
+*/

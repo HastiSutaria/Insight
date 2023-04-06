@@ -12,14 +12,16 @@
   <div class="surveys m-2">
     <h2>Surveys</h2>
 
-    <div class="row" >
-      <div class="col-sm" *ngFor="let survey of surveys; index as i">
-        <div class="card" style="width: 17rem">
+    <div class="row">
+      <div class="col-sm mb-3" *ngFor="let survey of surveys; index as i">
+        <div class="card" style="width: 17rem; height: 10rem;">
           <div class="card-body">
             <h5 class="card-title">{{ survey.name }}</h5>
             <p class="card-text">{{ survey.description }}</p>
             <a [routerLink]="getLink(i)" class="card-link">Fill</a>
             <a [routerLink]="getResponses(i)" class="card-link">Responses</a>
+            <a [routerLink]="" class="card-link">Edit</a>
+            <a [routerLink]="" class="card-link">Delete</a>
           </div>
         </div>
       </div>
