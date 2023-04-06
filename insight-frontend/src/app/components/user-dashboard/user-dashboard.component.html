@@ -3,18 +3,15 @@
  
     
     <div class="row">
-        <div class="col-sm">
-        <app-survey-card></app-survey-card>
+        <div class="col-sm" *ngFor="let survey of surveys">
+          <div class="card" style="width: 17rem">
+            <div class="card-body">
+              <h5 class="card-title">{{ survey.name }}</h5>
+              <p class="card-text">{{ survey.description }}</p>
+              <a href="#" class="card-link">Fill</a>
+            </div>
+          </div>
         </div>
-        <div class="col-sm">
-            <app-survey-card></app-survey-card>
-        </div>
-        <div class="col-sm">
-            <app-survey-card></app-survey-card>
-        </div>
-        <div class="col-sm">
-            <app-survey-card></app-survey-card>
-        </div>
-    </div>
+      </div>
     
 </div>

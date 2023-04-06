@@ -23,7 +23,7 @@ export class NewSurveyComponent implements OnInit {
   addingInputElement: Boolean = false;
   dynamicInputs = [];
 
-  inputTypes: string[] = ['paragraph', 'date', 'radio', 'select'];
+  inputTypes: string[] = ['paragraph','checkbox', 'date', 'radio', 'select'];
 
   constructor(private activatedRoute: ActivatedRoute, private formDataService: FormDataService) {}
 

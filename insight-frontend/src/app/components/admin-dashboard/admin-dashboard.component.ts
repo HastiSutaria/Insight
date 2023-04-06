@@ -21,4 +21,8 @@ export class AdminDashboardComponent {
     });
     console.log(this.surveys);
   }
+
+  getLink(ind: number) {
+    return '/fillSurvey/' + this.surveys[ind].key + '/view/form'
+  }
 }

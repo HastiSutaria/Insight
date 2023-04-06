@@ -1,29 +1,27 @@
 <div class="container">
-   <div class="mt-4">
-    <h1> My workspace </h1>
-   </div>
-<button type="button" class="btn clk-button " (click)="createForm()"><i class="bi bi-file-earmark-plus"></i> Create Survey</button>
-<div *ngIf="newForm">
+  <div class="mt-4">
+    <h1>My workspace</h1>
+  </div>
+  <button type="button" class="btn clk-button" (click)="createForm()">
+    <i class="bi bi-file-earmark-plus"></i> Create Survey
+  </button>
+  <div *ngIf="newForm">
     <app-survey-details-intro></app-survey-details-intro>
-</div>
-<hr>
-<div class="surveys m-2">
+  </div>
+  <hr />
+  <div class="surveys m-2">
     <h2>Surveys</h2>
- 
-    
-    <div class="row" *ngFor="let survey of surveys">
-        <div class="col-sm">
-            <div class="card" style="width: 17rem;" >
-                <div class="card-body">
-                  <h5 class="card-title">{{survey.name}}</h5>
-                  <p class="card-text">{{survey.description}}</p>
-                  <a href="#" class="card-link">Fill</a>
-                  
-           
-                </div>
+
+    <div class="row" >
+      <div class="col-sm" *ngFor="let survey of surveys; index as i">
+        <div class="card" style="width: 17rem">
+          <div class="card-body">
+            <h5 class="card-title">{{ survey.name }}</h5>
+            <p class="card-text">{{ survey.description }}</p>
+            <a [routerLink]="getLink(i)" class="card-link">Fill</a>
+          </div>
         </div>
-        
+      </div>
     </div>
-    
-</div>
+  </div>
 </div>

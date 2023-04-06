@@ -1,0 +1,15 @@
+.surveyForm{
+    border: 1px solid black;
+    height:70vh;
+    background-color: cornsilk;
+    width:50%;
+    margin:20px auto;
+    padding: 30px;
+    border-radius: 10%;
+}
+span.help-block{
+    color: red;
+}
+input.ng-invalid{
+    border:2px solid red;
+}

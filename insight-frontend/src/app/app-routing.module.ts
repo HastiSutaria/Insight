@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NewSurveyComponent } from './components/admin-dashboard/new-survey/new-survey.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { FillSurveyComponent } from './components/fill-survey/fill-survey.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,15 @@ const routes: Routes = [
     path: 'newSurvey',
     component: NewSurveyComponent,
   },
+  {
+    path: 'fillSurvey/:key/view/form',
+    component: FillSurveyComponent,
+    // children: [
+    //   { path: 'responses', component: FormResponsesComponent },
+    //   { path: 'form', component: FormViewComponent },
+    // ],
+  },
+
   
   {
     path: 'user-dashboard',

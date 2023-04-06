@@ -10,10 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { NewSurveyComponent } from './components/admin-dashboard/new-survey/new-survey.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { SurveyCardComponent } from './components/survey-card/survey-card.component';
+
 import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey-details-intro/survey-details-intro.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
-import { FillSurveyComponent } from './components/survey-card/fill-survey/fill-survey.component';
+import { FillSurveyComponent } from './components/fill-survey/fill-survey.component';
+
+
 
 @NgModule({
   declarations: [
@@ -24,9 +26,10 @@ import { FillSurveyComponent } from './components/survey-card/fill-survey/fill-s
     NewSurveyComponent,
     UserDashboardComponent,
     AdminDashboardComponent,
-    SurveyCardComponent,
     SurveyDetailsIntroComponent,
     FillSurveyComponent,
+
+  
   ],
   imports: [
     BrowserModule,
