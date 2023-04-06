@@ -25,7 +25,7 @@ constructor(private formService:FormDataService, private route: ActivatedRoute, 
       this.formService.formByKey.subscribe((form)=>{
         this.form = form;
         this.questions = this.form.questions;
-        console.log(this.form);
+        // console.log(this.form);
       })
       
   })

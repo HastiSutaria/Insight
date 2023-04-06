@@ -14,6 +14,10 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey-details-intro/survey-details-intro.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FillSurveyComponent } from './components/fill-survey/fill-survey.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
+
 
 
 
@@ -29,14 +33,16 @@ import { FillSurveyComponent } from './components/fill-survey/fill-survey.compon
     SurveyDetailsIntroComponent,
     FillSurveyComponent,
 
-  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
   providers: [],
   bootstrap: [AppComponent],

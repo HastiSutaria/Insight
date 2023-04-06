@@ -27,7 +27,7 @@ export class FormDataService {
     getSurveys(){
         this.http.get('http://localhost:3000/surveys').pipe(map(response=>response
         )).subscribe((forms)=>{
-          console.log(forms)
+          // console.log(forms)
             this.subject.next(forms);
             return forms;
             

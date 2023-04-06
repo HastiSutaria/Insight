@@ -27,7 +27,7 @@ const routes: Routes = [
     component: NewSurveyComponent,
   },
   {
-    path: 'fillSurvey/:key/view/form',
+    path: 'fillSurvey/:key/form',
     component: FillSurveyComponent,
     // children: [
     //   { path: 'responses', component: FormResponsesComponent },

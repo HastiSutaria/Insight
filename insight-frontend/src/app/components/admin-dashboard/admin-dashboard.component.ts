@@ -9,7 +9,7 @@ export class AdminDashboardComponent {
   newForm: Boolean = false
   surveys;
   createForm() {
-    console.log('callled  ')
+    // console.log('called createForm ')
     this.newForm = true
   }
   
@@ -18,11 +18,11 @@ export class AdminDashboardComponent {
     this.formService.getSurveys();
     this.formService.subject.subscribe((surveys) => {
       this.surveys = surveys;
+      // console.log(this.surveys);
     });
-    console.log(this.surveys);
   }
 
   getLink(ind: number) {
-    return '/fillSurvey/' + this.surveys[ind].key + '/view/form'
+    return '/fillSurvey/' + this.surveys[ind].key + '/form'
   }
 }
