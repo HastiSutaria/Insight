@@ -25,4 +25,7 @@ export class AdminDashboardComponent {
   getLink(ind: number) {
     return '/fillSurvey/' + this.surveys[ind].key + '/form'
   }
+  getResponses(i : number){
+    return '/surveyResponses/' + this.surveys[i].key + '/view'
+  }
 }

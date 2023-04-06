@@ -7,6 +7,7 @@ import { NewSurveyComponent } from './components/admin-dashboard/new-survey/new-
 import { SignupComponent } from './components/signup/signup.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FillSurveyComponent } from './components/fill-survey/fill-survey.component';
+import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
     //   { path: 'responses', component: FormResponsesComponent },
     //   { path: 'form', component: FormViewComponent },
     // ],
+  },
+  { path: 'surveyResponses/:key/view',
+  component: SurveyResponsesComponent
+
   },
 
   

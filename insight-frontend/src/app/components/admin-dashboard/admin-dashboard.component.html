@@ -19,6 +19,7 @@
             <h5 class="card-title">{{ survey.name }}</h5>
             <p class="card-text">{{ survey.description }}</p>
             <a [routerLink]="getLink(i)" class="card-link">Fill</a>
+            <a [routerLink]="getResponses(i)" class="card-link">Responses</a>
           </div>
         </div>
       </div>

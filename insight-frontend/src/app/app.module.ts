@@ -17,6 +17,7 @@ import { FillSurveyComponent } from './components/fill-survey/fill-survey.compon
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
 
 
 
@@ -32,6 +33,7 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     AdminDashboardComponent,
     SurveyDetailsIntroComponent,
     FillSurveyComponent,
+    SurveyResponsesComponent
 
   ],
   imports: [
