@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,7 +44,8 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatTableModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatMomentDateModule
   ],
   providers: [],
   bootstrap: [AppComponent],
