@@ -40,6 +40,7 @@ module.exports = {
 					let payload = { subject: user.__v };
 					let token = jwt.sign(payload, "secretKey");
 					res.status(200).send({ token });
+					
 				}
 			})
 			.catch((err) => {
@@ -136,6 +137,9 @@ module.exports = {
 			console.log(error.message);
 			res.status(400).json(error);
 		}
+	},
+	deleteSurvey: async(req, res)=>{
+		
 	},
 
 	getSurveyResponses: async (req, res) => {

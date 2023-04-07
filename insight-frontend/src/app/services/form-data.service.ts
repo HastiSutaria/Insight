@@ -19,7 +19,7 @@ export class FormDataService {
 
   saveFormData(formData: any) {
     const create_form_url = 'http://localhost:3000/create/survey';
-    console.log('in save form data', create_form_url);
+    // console.log('in save form data', create_form_url);
     return this.http.post<any>(create_form_url, formData, {observe: 'body'});
 
   }
@@ -40,9 +40,13 @@ export class FormDataService {
             this.formByKey.next(data);
         },(error)=>this.ApiErrors.next(error));
     }
+
+    deleteSurvey(key: string){
+      
+    }
     SubmitResponse(body:any){
         this.http.post('http://localhost:3000/survey/response',body).subscribe((response)=>{
-            console.log(response);
+            // console.log(response);
         },(error)=>this.ApiErrors.next(error))
     }
 }

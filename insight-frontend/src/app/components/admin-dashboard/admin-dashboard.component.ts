@@ -18,9 +18,11 @@ export class AdminDashboardComponent {
     this.formService.getSurveys();
     this.formService.subject.subscribe((surveys) => {
       this.surveys = surveys;
-      // console.log(this.surveys);
+      console.log(this.surveys);
     });
   }
+
+ 
 
   getLink(ind: number) {
     return '/fillSurvey/' + this.surveys[ind].key + '/form'

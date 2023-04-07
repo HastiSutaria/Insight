@@ -13,8 +13,8 @@ const FormSchema = new mongoose.Schema({
 		required: true,
 	},
 	is_deleted: {
-		type: Number,
-		default: 0,
+		type: Boolean,
+		default: false,
 	},
 	questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }],
 });

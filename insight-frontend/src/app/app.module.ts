@@ -13,10 +13,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { NewSurveyComponent } from './components/admin-dashboard/new-survey/new-survey.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
 import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey-details-intro/survey-details-intro.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FillSurveyComponent } from './components/fill-survey/fill-survey.component';
+import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
+
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { FillSurveyComponent } from './components/fill-survey/fill-survey.compon
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatTableModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

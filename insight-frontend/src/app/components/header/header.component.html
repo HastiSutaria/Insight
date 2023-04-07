@@ -4,17 +4,16 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-white logo">INSIGHT</a></li>
-          <li><a routerLink="/admin-dashboard" routerLinkActive="active" routerLinkActiveOptions="" class="nav-link px-2 text-white tab">Admin</a></li>
+          <li><a routerLink="/admin-dashboard" routerLinkActive="active" class="nav-link px-2 text-white tab">Admin</a></li>
           <li><a routerLink="/user-dashboard" routerLinkActive="active" class="nav-link px-2 text-white tab">Users</a></li>
         </ul>
 
-        <div class="text-end" *ngIf="!isLoggedIn; else loggedIn">
-          <button type="button" class="btn btn-outline-light me-2" routerLink="/login">Login</button>
-          <button type="button" class="btn btn-outline-light me-2" routerLink="/signup">Sign-up</button>
+        <div class="text-end" >
+          <button *ngIf="!isLoggedIn()" type="button" class="btn btn-outline-light me-2" routerLink="/login">Login</button>
+          <button *ngIf="!isLoggedIn()"  type="button" class="btn btn-outline-light me-2" routerLink="/signup">Sign-up</button>
+          <button *ngIf="isLoggedIn()"  type="button" class="btn btn-outline-light me-2" (click)="logout()">Logout</button>
         </div>
-        <ng-template class="text-end" #loggedIn>
-          <button type="button" class="btn btn-outline-light me-2" (click)="logout()">Logout</button>
-        </ng-template>
+
       </div>
     </div>
   </header>

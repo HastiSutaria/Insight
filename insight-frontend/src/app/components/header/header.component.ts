@@ -8,19 +8,16 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  private userSub: Subscription;
-  isLoggedIn = false;
   
   constructor(private auth: AuthService) {}
-
-  // ngOnInit(): void {
-  //   this.userSub = this.auth.user.subscribe(user => {
-  //     this.isAuthenticated = !!user
-  // })
-  // }
   
+  isLoggedIn() {
+    return this.auth.loggedIn();
+  }
+
   logout() {
     this.auth.logoutUser();
-    this.isLoggedIn = false;
+
   }
+  
 }

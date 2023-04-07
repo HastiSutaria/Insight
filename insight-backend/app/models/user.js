@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt');
+const Schema = mongoose.Schema;
 
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
     fullname: {
       type: String,
       required: true
@@ -25,12 +27,23 @@ const UserSchema = new mongoose.Schema({
       type: Boolean,
       required: true
     },
-    role:{
-      type : String,
+    admin:{
+      type : Boolean,
+      default: false
     }
     
   },
   { timestamps: true })
+
+  UserSchema.statics.hashPassword = function hashPassword(password){
+    return bcrypt.hashSync(password,10);
+}
+
+UserSchema.methods.isValid = function(hashedpassword){
+    return  bcrypt.compareSync(hashedpassword, this.password);
+}
+
+
 
   const User = mongoose.model('User',UserSchema);
 
