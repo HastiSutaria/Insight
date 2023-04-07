@@ -1,45 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormDataService } from 'src/app/services/form-data.service';
-import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-survey-responses',
   templateUrl: './survey-responses.component.html',
-  styleUrls: ['./survey-responses.component.css']
+  styleUrls: ['./survey-responses.component.css'],
 })
 export class SurveyResponsesComponent implements OnInit {
-  key:string;
-  form:any;
-  emails:string[]=[];
-  selectedEmail:string;
-  clicked:Boolean;
- 
-  constructor(private activateRoute:ActivatedRoute,private formService:FormDataService ) { }
+  key: string;
+  form: any;
+  emails: string[] = [];
+  dynamicData = [];
+  dynamicColumns: string[] = ['No.', 'Email']
+  
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private formService: FormDataService
+  ) {}
 
   ngOnInit(): void {
-    this.activateRoute.params.subscribe((params)=>{
+    this.activateRoute.params.subscribe((params) => {
+      // Identifying the key and searching the form responses based on it
       this.key = params['key'];
       this.formService.getSurveyByKey(this.key);
-      this.formService.formByKey.subscribe((form)=>{
+
+      // Subscribe to any change in data
+      this.formService.formByKey.subscribe((form) => {
         this.form = form;
-        this.form.questions.map((question)=>{
-          question.responses.map((response)=>{
-           this.emails.push(response.email)
-          })
+        console.log(this.form.questions);
+
+        // Extracting Emails from the data
+        this.form.questions.map(
+          (question: { responses: any[]; label: string }) => {
+
+            // Adding Columns to display on table
+            this.dynamicColumns.push(question.label)
+
+            question.responses.map((response) => {
+              this.emails.push(response.email);
+            });
+          }
+        );
+
+        this.emails = [...new Set(this.emails)];
+
+        for (let i = 0; i < this.form.questions[0].responses.length; i++) {
+          let dynamicObj = {};
           
-        })
-        this.emails = [...new Set(this.emails)]
-        
+          for (let j = 0; j < this.form.questions.length; j++) {
+            let lbl = this.form.questions[j].label;
+            dynamicObj[lbl] = this.form.questions[j].responses[i].response;
+            dynamicObj['Email'] = this.form.questions[j].responses[i].email;
+          }
+          
+          dynamicObj['No.'] = i+1
+          this.dynamicData.push(dynamicObj);
+        }
+        console.log(this.dynamicData);
       });
-    })
-    
+    });
   }
-  onClickViewResponse(event:string){
-    this.selectedEmail = event;
-    this.clicked = true;
-    
-  }
-
-
 }
