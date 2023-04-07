@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,17 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { NewSurveyComponent } from './components/admin-dashboard/new-survey/new-survey.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-
+import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
 import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey-details-intro/survey-details-intro.component';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FillSurveyComponent } from './components/fill-survey/fill-survey.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatMomentDateModule } from "@angular/material-moment-adapter";
-import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -33,8 +29,7 @@ import { SurveyResponsesComponent } from './components/survey-responses/survey-r
     AdminDashboardComponent,
     SurveyDetailsIntroComponent,
     FillSurveyComponent,
-    SurveyResponsesComponent
-
+    SurveyResponsesComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +39,7 @@ import { SurveyResponsesComponent } from './components/survey-responses/survey-r
     FormsModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
-    MatMomentDateModule
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
