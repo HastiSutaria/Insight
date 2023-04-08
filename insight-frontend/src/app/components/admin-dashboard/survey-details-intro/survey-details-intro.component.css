@@ -28,6 +28,7 @@
 .clk-button {
     background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
     color: white;
+    margin-right: 8px;
     /* float: right; */
   }
   

@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import Validation from 'src/app/helpers/validation';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,7 @@ export class SignupComponent implements OnInit {
     acceptTerms: new FormControl(false),
   });
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private auth: AuthService, private _router: Router) {}
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private _router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -74,6 +75,7 @@ export class SignupComponent implements OnInit {
     // }
     this.registerUser(this.form.value)
     this.onReset();
+   
   }
 
   onReset(): void {
@@ -86,9 +88,13 @@ export class SignupComponent implements OnInit {
       (res) => {
         // console.log(res);
         localStorage.setItem('token', res.token);
+        this.toastr.success('Success', "You've successfully registered!");
+
         this._router.navigate(['/admin-dashboard'])
       },
-      (err) => alert(err.error)
+      (err) => this.toastr.error(err.error)
     );
   }
+
+ 
 }

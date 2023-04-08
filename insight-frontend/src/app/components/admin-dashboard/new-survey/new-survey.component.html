@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="card mt-3 w-50">
     <h1 class="card-header">
-      {{ formName }}
+      <input type="text" value="{{ formName }}" style="outline: none;background-color: aliceblue; border:0px">
     </h1>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
@@ -126,6 +126,39 @@
             disabled
           />
         </div>
+        <!-- telephone -->
+        <div *ngIf="input.type === 'tel'" class="form-group">
+          <label for="tel{{ i }}" class="question-label"
+            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+          >
+          <input
+            class="form-control"
+            type="tel"
+            pattern="[0-9]{10}"
+            placeholder="Enter response"
+            name="question{{ i }}"
+            ngModel
+            required
+            #tel="ngModel"
+            disabled
+          />
+        </div>
+        <!-- number -->
+        <div *ngIf="input.type === 'number'" class="form-group">
+          <label for="number{{ i }}" class="question-label">
+            <strong>{{ i + 1 }}. {{ input.label }}</strong>
+          </label>
+          <input 
+          class="form-control"
+          type="number"
+          min="0" max="10000000000"
+          placeholder="Enter number"
+          name="question{{i}}"
+          ngModel
+          required
+          #number="ngModel"
+          disabled/>
+        </div>
 
         <!-- Date -->
         <div *ngIf="input.type === 'date'" class="form-group">
@@ -160,6 +193,24 @@
           </div>
         </div>
 
+        <!--checkbox-->
+        <div *ngIf="input.type === 'checkbox'">
+          <label for="checkBoxQuestion" class="question-label"
+            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+          >
+          <div *ngFor="let option of input.options; let z = index">
+            <div class="checkbox pe-2">
+              <input
+                type="checkbox"
+                name="optcheckbox"
+                id="checkBoxOption{{ z }}"
+              />
+              <label for="checkBoxOption{{ z }}" class="ps-2">{{ option }}</label>
+            </div>
+          </div>
+        </div>
+
+
         <!-- Select -->
         <div *ngIf="input.type === 'select'">
           <label for="selectInputQuestion" class="question-label"
@@ -181,6 +232,7 @@
       <ng-template [ngIf]="dynamicInputs.length > 0">
         <div style="height: 30px">
           <button type="submit" class="btn clk-button-add">Save</button>
+          <button type="submit" class="btn clk-button-add" (click)="onCancel()">Cancel</button>
         </div>
       </ng-template>
     </form>

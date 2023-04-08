@@ -34,6 +34,7 @@ label {
   background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
   color: white;
   float: right;
+  margin-right: 8px;
 }
 
 .clk-button {

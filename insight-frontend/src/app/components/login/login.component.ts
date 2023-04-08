@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { AuthService } from 'src/app/services/auth.service';
 import Validation from 'src/app/helpers/validation';
 import { Route, Router } from '@angular/router';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit{
   submitted = false;
   error = ''
 
-  constructor(private formBuilder: FormBuilder,private auth: AuthService, private _router : Router) {}
+  constructor(private formBuilder: FormBuilder,private auth: AuthService, private _router : Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -59,6 +59,8 @@ export class LoginComponent implements OnInit{
     // }
     this.loginUser(this.form.value)
     this.onReset();
+    
+
   }
 
   onReset(): void {
@@ -71,9 +73,10 @@ export class LoginComponent implements OnInit{
       (res) => {
         console.log('Token', res);
         localStorage.setItem('token', res.token);
+        this.toastr.success('Success', "You've successfully loggedin!");
         this._router.navigate(['/admin-dashboard'])
       },
-      (err) => alert(err.error)
+      (err) => this.toastr.error(err.error)
     );
 
   }

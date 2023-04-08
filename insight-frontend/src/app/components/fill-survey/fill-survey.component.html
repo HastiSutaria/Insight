@@ -46,6 +46,36 @@
             required
           />
         </div>
+        
+        
+          <div *ngIf="input.type === 'number'" class="form-group">
+            <label class="surveyQuestions" for="number{{ i }}">{{ i + 1 }}. {{ input.label }}</label>
+            <input
+              class="form-control"
+              type="number"
+              min="0" max="10000000000"
+              placeholder="Enter number"
+              name="{{ input.label }}"
+              ngModel
+              required
+            />
+          </div>
+
+
+        
+          <div *ngIf="input.type === 'tel'" class="form-group">
+            <label class="surveyQuestions" for="number{{ i }}">{{ i + 1 }}. {{ input.label }}</label>
+            <input
+              class="form-control"
+              type="tel"
+              pattern="[0-9]{10}"
+              placeholder="Enter 10 digit contact number"
+              name="{{ input.label }}"
+              ngModel
+              required
+            />
+          </div>
+          
 
         <div *ngIf="input.type === 'date'" class="form-group">
           <label class="surveyQuestions" for="date{{ i }}">{{ i + 1 }}.  {{input.label}}</label><br>
@@ -61,7 +91,6 @@
               required
             />
             <mat-datepicker-toggle
-              style="width: 30px;height: 30px;"
               matSuffix
               [for]="picker"
             ></mat-datepicker-toggle>
@@ -88,6 +117,28 @@
             </div>
           </div>
         </div>
+
+        <div *ngIf="input.type === 'checkbox'">
+          <label class="surveyQuestions" for="checkBoxQuestion">{{ i + 1 }}.  {{ input.label }}</label>
+
+          <div *ngFor="let option of input.options; let z = index">
+            <div class="checkbox m-2">
+              <label for="checkBoxOption{{ z }}"
+                ><input class="m-1"
+                  type="checkbox"
+                  name="{{ input.label }}"
+                  id="checkBoxOption{{ z }}"
+                  value="{{ option }}"
+                  ngModel
+                  required
+                />{{ option }}</label
+              >
+            </div>
+          </div>
+        </div>
+
+
+
         <div *ngIf="input.type === 'select'">
           <label class="surveyQuestions" for="selectInputQuestion">{{ i + 1 }}.  {{ input.label }}</label>
           <select

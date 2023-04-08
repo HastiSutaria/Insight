@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -18,8 +17,8 @@ import { SurveyDetailsIntroComponent } from './components/admin-dashboard/survey
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { FillSurveyComponent } from './components/fill-survey/fill-survey.component';
 import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
-
 import { ToastrModule } from 'ngx-toastr';
+import { EditSurveyComponent } from './components/admin-dashboard/edit-survey/edit-survey.component';
 
 
 @NgModule({
@@ -34,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     SurveyDetailsIntroComponent,
     FillSurveyComponent,
     SurveyResponsesComponent,
+    EditSurveyComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,8 +44,10 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatTableModule,
-    ToastrModule.forRoot(),
-    MatMomentDateModule
+    MatMomentDateModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-bottom-right'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],

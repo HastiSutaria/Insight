@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Subject, map } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -41,9 +41,10 @@ export class FormDataService {
         },(error)=>this.ApiErrors.next(error));
     }
 
-    deleteSurvey(key: string){
-      
+    deleteSurvey(key: string): Observable<unknown> {
+        return this.http.delete<any>(`http://localhost:3000/survey/${key}`).pipe()
     }
+
     SubmitResponse(body:any){
         this.http.post('http://localhost:3000/survey/response',body).subscribe((response)=>{
             // console.log(response);

@@ -40,7 +40,7 @@ module.exports = {
 					let payload = { subject: user.__v };
 					let token = jwt.sign(payload, "secretKey");
 					res.status(200).send({ token });
-					
+
 				}
 			})
 			.catch((err) => {
@@ -54,12 +54,12 @@ module.exports = {
 			console.log("Data: ", data);
 			let questionsData = data.dynamicInputs;
 			let formName = data.name;
-      let formDesc = data.description;
+            let formDesc = data.description;
 			const questions = await Questions.insertMany(questionsData);
 			const question_ids = questions.map((question) => question.id);
 			const form = new Form({
 				name: formName,
-        description: formDesc,
+                description: formDesc,
 				key: randomString.generate(),
 				questions: question_ids,
 			});
@@ -138,7 +138,55 @@ module.exports = {
 			res.status(400).json(error);
 		}
 	},
+
+	updateSurvey : async (req, res)=> {
+		try{
+			const data = req.params;
+			console.log(data);
+			
+			if (!data.key) {
+				throw { statusCode: 404, message: "MISSING_PARAMS" };
+			}
+			const form = await Form.findByIdAndUpdate({ key: data.key });
+
+			await Questions.findByIdAndUpdate({_id: { $in: form.questions}})
+
+			if (!form) {
+				throw { statusCode: 404, message: "Form_NOT_FOUND" };
+			}
+
+
+		}
+		catch (error) {
+			res
+				.status(error.statusCode)
+				.json({ status: error.statusCode, error: error.message });
+		}
+	},
 	deleteSurvey: async(req, res)=>{
+		try{
+			
+			const data = req.params;
+			console.log(data);
+			
+			if (!data.key) {
+				throw { statusCode: 404, message: "MISSING_PARAMS" };
+			}
+			const form = await Form.findOne({ key: data.key });
+
+			await Questions.deleteMany({_id: { $in: form.questions}})
+            await Form.deleteOne({ key: data.key })
+			if (!form) {
+				throw { statusCode: 404, message: "Form_NOT_FOUND" };
+			}
+
+
+		}
+		catch (error) {
+			res
+				.status(error.statusCode)
+				.json({ status: error.statusCode, error: error.message });
+		}
 		
 	},
 

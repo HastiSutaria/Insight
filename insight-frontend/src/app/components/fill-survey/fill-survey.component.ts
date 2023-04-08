@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormDataService } from 'src/app/services/form-data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fill-survey',
@@ -14,7 +15,7 @@ form:any;
 questions:[]=[];
 result:any={responses:[]};
 
-constructor(private formService:FormDataService, private route: ActivatedRoute, private router: Router){
+constructor(private formService:FormDataService, private route: ActivatedRoute, private router: Router, private toastr: ToastrService){
 
 }
 
@@ -31,6 +32,8 @@ constructor(private formService:FormDataService, private route: ActivatedRoute, 
   })
 }
 onSubmitSurveyForm(surveyForm:NgForm){
+
+
   console.log(surveyForm.value)
   this.result['key'] = this.key
   for (const id in  surveyForm.value ) {
@@ -40,6 +43,7 @@ onSubmitSurveyForm(surveyForm:NgForm){
   }
   
  this.formService.SubmitResponse(this.result);
+ this.toastr.success('Success',"You've filled the survey!")
  this.router.navigate(['/admin-dashboard']); 
 
 }

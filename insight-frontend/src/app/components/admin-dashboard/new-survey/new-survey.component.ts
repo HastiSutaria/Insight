@@ -7,7 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { FormDataService } from 'src/app/services/form-data.service';
+
 
 @Component({
   selector: 'app-new-survey',
@@ -23,9 +25,9 @@ export class NewSurveyComponent implements OnInit {
   addingInputElement: Boolean = false;
   dynamicInputs = [];
 
-  inputTypes: string[] = ['paragraph','checkbox', 'date', 'radio', 'select'];
+  inputTypes: string[] = ['paragraph','checkbox', 'date', 'radio', 'select', 'tel', 'number', ];
 
-  constructor(private activatedRoute: ActivatedRoute, private formDataService: FormDataService, private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute, private formDataService: FormDataService, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
@@ -66,6 +68,20 @@ export class NewSurveyComponent implements OnInit {
   }
 
   onSubmitSurveyForm(surveyForm: NgForm) {
+    // const emailFormArray = <FormArray>this.myForm.controls.useremail;
+
+    // if (isChecked) {
+    //   emailFormArray.push(new FormControl(email));
+    // } else {
+    //   let index = emailFormArray.controls.findIndex(x => x.value == email)
+    //   emailFormArray.removeAt(index);
+    // }
+
+    // const selectedColors = this.productForm.value.SelectedColor.map(
+    //   (checked, i) => (checked ? this.colors[i].productColorId : null)
+    // ).filter((v) => v !== null);
+
+    
     console.log(this.formName);
     console.log(surveyForm)
 
@@ -75,13 +91,21 @@ export class NewSurveyComponent implements OnInit {
     console.log(this.FinalBody)
     this.formDataService.saveFormData(this.FinalBody).subscribe(res => {
       console.log('response recieved')
+      this.toastr.success('Success', "Survey created!");
       this.router.navigate(['/admin-dashboard'])
     }, error => {
       console.log(error)
+      // this.toastr.error(error)
     })
   }
 
   onDeleteOption(index: number) {
     (<FormArray>this.dynamicForm.get('options')).removeAt(index);
+  }
+
+  onCancel() {
+    this.router.navigate(['admin-dashboard']).then(() => {
+      window.location.reload();
+    });
   }
 }

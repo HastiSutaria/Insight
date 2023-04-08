@@ -21,4 +21,10 @@ export class SurveyDetailsIntroComponent {
         }
       })
   }
+
+  onCancel() {
+    this._router.navigate(['admin-dashboard']).then(() => {
+      window.location.reload();
+    });
+  }
 }

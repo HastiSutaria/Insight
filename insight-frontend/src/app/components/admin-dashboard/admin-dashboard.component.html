@@ -21,7 +21,7 @@
             <a [routerLink]="getLink(i)" class="card-link">Fill</a>
             <a [routerLink]="getResponses(i)" class="card-link">Responses</a>
             <a [routerLink]="" class="card-link">Edit</a>
-            <a [routerLink]="" class="card-link">Delete</a>
+            <a (click)="deleteSurvey(i)" class="card-link">Delete</a>
           </div>
         </div>
       </div>
