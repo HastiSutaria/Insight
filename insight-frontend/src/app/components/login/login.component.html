@@ -1,9 +1,10 @@
-<div class="login-form container mt-5">
+<body>
+  <div class="login-form container p-5">
     <h1>Login</h1>
     <hr>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
     
-      <div class="form-group">
+      <div class="form-group mt-3">
         <label>Email</label>
         <input
           type="text"
@@ -18,7 +19,7 @@
         </div>
       </div>
   
-      <div class="form-group">
+      <div class="form-group mt-3">
         <label>Password</label>
         <input
           type="password"
@@ -39,10 +40,12 @@
       </div>
   
      
-      <div class="form-group">
+      <div class="form-group mt-3">
         <button type="submit" class="btn clk-button">Login</button>
         <span>Create an account? <a routerLink="/signup">Sign Up</a></span>
       </div>
     </form>
   </div>
 
+
+</body>

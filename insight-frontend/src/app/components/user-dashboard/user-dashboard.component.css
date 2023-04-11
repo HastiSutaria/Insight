@@ -1,0 +1,36 @@
+body {
+  margin-top: 20px;
+  background: #eee;
+}
+
+.card-footer {
+  background-color: #2b7a78;
+  color: white;
+}
+
+.bi-ui-checks {
+  cursor: pointer;
+}
+
+.hovertext:before {
+  content: attr(data-hover);
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  background-color: #eee;
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 5px;
+  transition: opacity 1s ease-in-out;
+
+  position: absolute;
+  z-index: 1;
+  left: 0.5;
+  top: 105%;
+}
+
+.hovertext:hover:before {
+  opacity: 1;
+  visibility: visible;
+}

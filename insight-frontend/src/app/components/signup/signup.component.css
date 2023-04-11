@@ -1,5 +1,14 @@
 .register-form{ 
-    width: 650px;
+    width: 40%;
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+}
+
+
+body{
+  background-image: linear-gradient(to bottom, #2b7a78 20%, #3aafa9 100%);
 }
 
 button{
@@ -7,13 +16,13 @@ button{
 }
 
 .clk-button {
-    background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
+    background-color: #2b7a78;
     color: white;
     /* float: right; */
   }
 
   .clk-button:hover {
-    background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
+  background-color: #3aafa9
   }
   
   .form-group{

@@ -1,30 +1,80 @@
 <div class="container">
-  <div class="mt-4">
+  <div class="mt-4 adminheader">
     <h1>My workspace</h1>
+    
+      <button type="button" class="btn clk-button" (click)="createForm()">
+        <i class="bi bi-file-earmark-plus"></i> Create Survey
+      </button>
+    
   </div>
-  <button type="button" class="btn clk-button" (click)="createForm()">
-    <i class="bi bi-file-earmark-plus"></i> Create Survey
-  </button>
+
   <div *ngIf="newForm">
     <app-survey-details-intro></app-survey-details-intro>
   </div>
   <hr />
-  <div class="surveys m-2">
+  <div class="surveys m-3">
     <h2>Surveys</h2>
 
     <div class="row">
-      <div class="col-sm mb-3" *ngFor="let survey of surveys; index as i">
-        <div class="card" style="width: 17rem; height: 10rem;">
-          <div class="card-body">
-            <h5 class="card-title">{{ survey.name }}</h5>
-            <p class="card-text">{{ survey.description }}</p>
-            <a [routerLink]="getLink(i)" class="card-link">Fill</a>
-            <a [routerLink]="getResponses(i)" class="card-link">Responses</a>
-            <a [routerLink]="editSurvey(i)" class="card-link">Edit</a>
-            <a (click)="deleteSurvey(i)" class="card-link">Delete</a>
+
+      <div class="col mb-3" *ngFor="let survey of surveys; index as i">
+        <div class="container">
+          <div class="row">
+              <div class="col-xl-7 mb-3 mb-lg-5">
+                  <div class="card" style="width: 20rem; height: 12rem;">
+                      <div class="card-body">
+                          <div class="d-flex flex-column text-center align-items-center">
+      
+                              <div class="flex-grow-1 pt-4">
+                                  
+                                  <h5>{{ survey.name }}</h5>
+                                  <span class="d-block text-muted m-2">{{ survey.description}}</span>
+                        
+                              
+                              </div>
+                          </div>
+                      </div>
+      
+                      <!--Footer states-->
+                      <div class="card-footer py-0 border-top">
+                          <div class="row">
+                              <div class="col text-center p-3 ">
+                               
+                                <span class="hovertext" data-hover="Fill survey">
+                                  <i  [routerLink]="getLink(i)"  class="bi bi-ui-checks"></i>
+                                </span>
+                              </div>
+      
+                              <div class="col p-3 text-center border-end border-start">
+                                
+                                <span class="hovertext" data-hover="Edit survey">
+                                  <i [routerLink]=""  class="bi bi-pencil-square"></i>
+                                </span>
+                              </div>
+                              <div class="col p-3 text-center border-end ">
+                                
+                                <span class="hovertext" data-hover="View Responses">
+                                  <i [routerLink]="getResponses(i)"  class="bi bi-eye-fill"></i>
+                                </span>
+                              </div>
+                              <div class="col p-3 text-center">
+                               
+                                <span class="hovertext" data-hover="Delete survey">
+                                  <i (click)="deleteSurvey(i)" class="bi bi-trash-fill"></i>
+                                </span>
+                              </div>
+                              
+                          </div>
+                      </div>
+                  </div>
+              </div>       
+              
+  
           </div>
-        </div>
       </div>
+      </div>
+
+
     </div>
 
     

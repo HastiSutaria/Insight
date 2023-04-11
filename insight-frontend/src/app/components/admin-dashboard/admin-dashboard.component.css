@@ -1,13 +1,57 @@
 .clk-button {
-    background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
-    color: white;
-    /* float: right; */
-  }
+  background-color: #2b7a78;
+  color: white;
+  margin-left: auto;
+  /* float: right; */
+}
 
-  .clk-button:hover {
-    background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
-  }
-  
-  .card-link{ 
-    cursor: pointer;
-  }
+.clk-button:hover {
+  background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
+}
+.hovertext:before {
+  content: attr(data-hover);
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  background-color: #eee;
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 5px;
+  transition: opacity 1s ease-in-out;
+
+  position: absolute;
+  z-index: 1;
+  left: 0.5;
+  top: 105%;
+}
+
+.hovertext:hover:before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.card:hover {
+  box-shadow: 0 20px 27px 0 rgba(2, 66, 66, 0.1);
+}
+.card-footer {
+  background-color: #2b7a78;
+  color: white;
+}
+.bi-trash-fill {
+  cursor: pointer;
+}
+.bi-ui-checks {
+  cursor: pointer;
+}
+.bi-pencil-square {
+  cursor: pointer;
+}
+
+.adminheader {
+  display: flex;
+}
+
+h1 {
+  margin: 0;
+}

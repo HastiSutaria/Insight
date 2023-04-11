@@ -7,6 +7,14 @@
   margin: 1.5rem 0.5rem;
   margin: 1.5rem 0.5rem;
 }
+h1{
+  color: #2b7a78;
+}
+
+body{margin-top:20px;
+  background:#eee;
+  }
+
 
 label {
   margin-bottom: 0.7rem;
@@ -14,37 +22,31 @@ label {
 }
 
 .input-question {
-  border-left: 10px solid #212529;
+  border-left: 10px solid #2b7a78;
 }
 
-.clk-button-add {
-  background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
-  color: white;
-  float: right;
-}
 
 .clk-button {
-  background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
+  background-color: #2b7a78;
   color: white;
   /* float: right; */
 }
 
+.clk-button-add:hover{
+  background-color: #3aafa9;
+}
+
 
 .clk-button-add {
-  background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
+  background-color: #2b7a78;
   color: white;
   float: right;
   margin-right: 8px;
 }
 
-.clk-button {
-  background-image: linear-gradient(to bottom, #4d4b4b 51%, #101011 100%);
-  color: white;
-  /* float: right; */
-}
 
 .clk-button:hover {
-  background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
+  background-color: #3aafa9;
 }
 
 .question-label {
@@ -53,5 +55,9 @@ label {
 
 .bi {
   color: black;
+
+}
+.card {
+  box-shadow: 0 10px 17px 0 rgba(2, 66, 66, 0.1);
 
 }

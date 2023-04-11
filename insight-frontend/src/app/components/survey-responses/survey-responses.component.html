@@ -1,20 +1,23 @@
-<div class="container mt-4">
-  <div class="list-group">
-    <h2>Responses</h2>
-    <hr>
-    <div class="container">
-      <table mat-table [dataSource]="dynamicData" class="mat-elevation-z8">
-      
-        <ng-container *ngFor="let col of dynamicColumns" matColumnDef="{{col}}">
-          <th mat-header-cell *matHeaderCellDef> {{ col }} </th>
-          <td mat-cell *matCellDef="let element"> {{ element[col] }} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="dynamicColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: dynamicColumns;"></tr>
-      
-      </table>
+<body>
+  <div class="container">
+    <div class="list-group">
+      <h2>Responses</h2>
+
+      <div class="container m-3">
+        <table mat-table [dataSource]="dynamicData" class="mat-elevation-z8">
+        
+          <ng-container *ngFor="let col of dynamicColumns" matColumnDef="{{col}}">
+            <th mat-header-cell *matHeaderCellDef> {{ col }} </th>
+            <td mat-cell *matCellDef="let element"> {{ element[col] }} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="dynamicColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: dynamicColumns;"></tr>
+        
+        </table>
+      </div>
     </div>
+    
   </div>
   
-</div>
+</body>

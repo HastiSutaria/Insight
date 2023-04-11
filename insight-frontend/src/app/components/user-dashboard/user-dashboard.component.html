@@ -1,9 +1,8 @@
 <div class="surveys m-5">
     <h1>Surveys</h1>
  
-    
     <div class="row">
-        <div class="col-sm" *ngFor="let survey of surveys; index as i">
+        <!-- <div class="col-sm" *ngFor="let survey of surveys; index as i">
           <div class="card" style="width: 17rem">
             <div class="card-body">
               <h5 class="card-title">{{ survey.name }}</h5>
@@ -11,7 +10,48 @@
               <a [routerLink]="getLink(i)" class="card-link">Fill</a>
             </div>
           </div>
-        </div>
+        </div> -->
+
+      <div class="col mb-3" *ngFor="let survey of surveys; index as i">
+        <div class="container">
+          <div class="row">
+              <div class="col">
+                  <div class="card" style="width: 17rem; height: 12rem;">
+                      <div class="card-body">
+                          <div class="d-flex flex-column text-center align-items-center">
+      
+                              <div class="flex-grow-1 pt-4">
+                                  
+                                  <h5>{{ survey.name }}</h5>
+                                  <span class="d-block text-muted m-2">{{ survey.description}}</span>
+                        
+                              
+                              </div>
+                          </div>
+                      </div>
+      
+                      <!--Footer states-->
+                      <div class="card-footer py-0 border-top">
+                          <div class="row">
+                              <div class="col text-center p-3 ">
+                               
+                                <span class="hovertext" data-hover="Fill survey">
+                                  <i  [routerLink]="getLink(i)"  class="bi bi-ui-checks"></i>
+                                  
+                                </span>
+                              </div>
+      
+                              
+                              
+                          </div>
+                      </div>
+                  </div>
+              </div>       
+              
+  
+          </div>
+      </div>
+      </div>
       </div>
 
 
