@@ -3,13 +3,14 @@
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" >
-          <li><a href="#" class="nav-link px-2 text-white logo">INSIGHT</a></li>
-          <li><a *ngIf="isLoggedIn()" routerLink="/admin-dashboard" routerLinkActive="active" class="nav-link px-2 text-white tab">Admin</a></li>
-          <li><a *ngIf="isLoggedIn()" routerLink="/user-dashboard" routerLinkActive="active" class="nav-link px-2 text-white tab">Users</a></li>
+          <li><a routerLink="/home" class="nav-link px-2 text-white logo">INSIGHT</a></li>
+          <li><a *ngIf="isLoggedIn()" routerLink="/admin-dashboard" routerLinkActive="active" class="nav-link px-2 text-white tab">Dashboard</a></li>
+          <li><a routerLink="/surveys" routerLinkActive="active" class="nav-link px-2 text-white tab">Surveys</a></li>
+         
         </ul>
 
         <div class="text-end" >
-          <button *ngIf="!isLoggedIn()" type="button" class="btn btn-outline-light me-2" routerLink="/login">Login</button>
+          <!-- <button *ngIf="!isLoggedIn()" type="button" class="btn btn-outline-light me-2" routerLink="/login">Login</button> -->
           <button *ngIf="!isLoggedIn()"  type="button" class="btn btn-outline-light me-2" routerLink="/signup">Sign-up</button>
             <li  *ngIf="isLoggedIn()" class="nav-item dropdown" style="list-style-type: none;">
               <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button"

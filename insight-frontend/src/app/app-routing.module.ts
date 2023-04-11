@@ -10,11 +10,11 @@ import { FillSurveyComponent } from './components/fill-survey/fill-survey.compon
 import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
 import { EditSurveyComponent } from './components/admin-dashboard/edit-survey/edit-survey.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { AuthGuard } from './helpers/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/home',
     pathMatch: 'full',
   },
   {
@@ -32,31 +32,36 @@ component: HomeComponent,
   {
     path: 'newSurvey',
     component: NewSurveyComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'fillSurvey/:key/form',
     component: FillSurveyComponent,
   },
   { path: 'surveyResponses/:key',
-  component: SurveyResponsesComponent
+  component: SurveyResponsesComponent,
+  canActivate: [AuthGuard],
 
   },
   { path: 'editSurvey/:key',
-  component: EditSurveyComponent
+  component: EditSurveyComponent,
+  canActivate: [AuthGuard],
 
   },
   {
-    path: 'user-dashboard',
+    path: 'surveys',
     component: UserDashboardComponent
   },     
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
     children: [
      
       {
         path: 'survey-details', // child route path
-        component: SurveyDetailsIntroComponent, // child route component that the router renders
+        component: SurveyDetailsIntroComponent,
+        canActivate: [AuthGuard], // child route component that the router renders
       }
     
     ],

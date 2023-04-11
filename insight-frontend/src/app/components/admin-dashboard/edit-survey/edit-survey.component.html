@@ -32,13 +32,13 @@
             {{ i + 1 }}.
             <input clas="text-body-input" type="text" value="{{ input.label }}" #paragraph (change)="editQuestion(i,paragraph.value)"/>
           </label>
-          <button
+          <!-- <button
             type="button"
             class="btn btn-primary float-end"
             (click)="editQuestion(i, paragraph.value)"
           >
             Edit
-          </button>
+          </button> -->
           <input
             id="question{{ i }}"
             class="form-control"
@@ -53,14 +53,14 @@
         <div *ngIf="input.type === 'tel'" class="form-group">
           <label for="tel{{ i }}" class="question-label"
             >{{ i + 1 }}.
-              <input type="text" value="{{ input.label }}" #telephone /></label>
-          <button
+              <input type="text" value="{{ input.label }}" #telephone (change)="editQuestion(i,paragraph.value)" /></label>
+          <!-- <button
             type="button"
             class="btn btn-primary float-end"
             (click)="editQuestion(i, telephone.value)"
           >
             Edit
-          </button>
+          </button> -->
           <input
             id="tel{{ i }}"
             class="form-control"
@@ -75,16 +75,16 @@
         <div *ngIf="input.type === 'number'" class="form-group">
           <label for="number{{ i }}" class="question-label">
             {{ i + 1 }}.
-              <input type="text" value="{{ input.label }}" #number
+              <input type="text" value="{{ input.label }}" (change)="editQuestion(i,paragraph.value)" #number
             />
           </label>
-          <button
+          <!-- <button
             type="button"
             class="btn btn-primary float-end"
             (click)="editQuestion(i, number.value)"
           >
             Edit
-          </button>
+          </button> -->
           <input
             class="form-control"
             type="number"
@@ -98,14 +98,8 @@
         <div *ngIf="input.type === 'date'" class="form-group">
           <label for="DateQuestion" class="question-label"
             >{{ i + 1 }}.
-              <input type="text" value="{{ input.label }}" #date /></label>
-          <button
-            type="button"
-            class="btn btn-primary float-end"
-            (click)="editQuestion(i, date.value)"
-          >
-            Edit
-          </button>
+              <input type="text" value="{{ input.label }}" (change)="editQuestion(i,paragraph.value)" #date /></label>
+    
           <input
             type="date"
             class="form-control"
@@ -122,14 +116,8 @@
               <input
                 type="text"
                 value="{{ input.label }}"
-                #radio /></label
-          ><button
-            type="button"
-            class="btn btn-primary float-end"
-            (click)="editQuestion(i, radio.value)"
+                #radio (change)="editQuestion(i,paragraph.value)" /></label
           >
-            Edit
-          </button>
           <div *ngFor="let option of input.options; let z = index">
             <div class="radio pe-2">
               <input
@@ -151,14 +139,8 @@
               <input
                 type="text"
                 value="{{ input.label }}"
-                #checkbox /></label
-          ><button
-            type="button"
-            class="btn btn-primary float-end"
-            (click)="editQuestion(i, checkbox.value)"
+                #checkbox (change)="editQuestion(i,paragraph.value)" /></label
           >
-            Edit
-          </button>
           <div *ngFor="let option of input.options; let z = index">
             <div class="checkbox pe-2">
               <input
@@ -177,17 +159,11 @@
         <div *ngIf="input.type === 'select'">
           <label for="selectInputQuestion" class="question-label"
             >{{ i + 1 }}.
-              <input
+              <input (change)="editQuestion(i,paragraph.value)"
                 type="text"
                 value="{{ input.label }}"
                 #select /></label
-          ><button
-            type="button"
-            class="btn btn-primary float-end"
-            (click)="editQuestion(i, select.value)"
           >
-            Edit
-          </button>
           <select
             class="form-select"
             id="exampleFormControlSelect"

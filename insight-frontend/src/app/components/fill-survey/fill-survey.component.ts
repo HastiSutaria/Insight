@@ -44,7 +44,7 @@ onSubmitSurveyForm(surveyForm:NgForm){
   
  this.formService.SubmitResponse(this.result);
  this.toastr.success('Success',"You've filled the survey!")
- this.router.navigate(['/admin-dashboard']); 
+ this.router.navigate(['/surveys']); 
 
 }
 

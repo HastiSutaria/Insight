@@ -10,6 +10,7 @@ body {
 
 .bi-ui-checks {
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .hovertext:before {

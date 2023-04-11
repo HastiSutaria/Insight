@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormDataService } from 'src/app/services/form-data.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class UserDashboardComponent {
   surveys;
   
   
-  constructor(private formService: FormDataService) {}
+  constructor(private formService: FormDataService, private router: Router) {}
   ngOnInit(): void {
     this.formService.getSurveys();
     this.formService.subject.subscribe((surveys) => {
@@ -22,4 +23,6 @@ export class UserDashboardComponent {
   getLink(ind: number) {
     return '/fillSurvey/' + this.surveys[ind].key + '/form'
   }
+
+  
 }

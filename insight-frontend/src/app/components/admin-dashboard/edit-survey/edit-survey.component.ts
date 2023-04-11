@@ -45,6 +45,9 @@ export class EditSurveyComponent {
   }
 
   onSubmitSurveyForm(surveyForm: any) {
+
     console.log('Survey Editted');
+    this.toastr.success('Success', "Survey updated!");
+    this.router.navigate(['/admin-dashboard'])
   }
 }
