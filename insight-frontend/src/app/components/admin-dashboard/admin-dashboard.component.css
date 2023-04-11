@@ -8,4 +8,6 @@
     background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
   }
   
-  
+  .card-link{ 
+    cursor: pointer;
+  }

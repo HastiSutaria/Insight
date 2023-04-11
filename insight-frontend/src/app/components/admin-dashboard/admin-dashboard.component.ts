@@ -23,20 +23,24 @@ export class AdminDashboardComponent {
     });
   }
 
+  getLink(ind: number) {
+    return '/fillSurvey/' + this.surveys[ind].key + '/form';
+  }
+  
+  getResponses(ind: number) {
+    return '/surveyResponses/' + this.surveys[ind].key;
+  }
+
+  editSurvey(ind: number) {
+    return '/editSurvey/' + this.surveys[ind].key
+  }
+  
   deleteSurvey(ind: number) {
     this.formService
       .deleteSurvey(this.surveys[ind].key)
       .subscribe(() => {});
     
-      this.surveys = this.surveys.filter((survey) => survey.key !== this.surveys[ind].key);
+      this.surveys = this.surveys.filter((survey: { key: any; }) => survey.key !== this.surveys[ind].key);
       this.toastr.warning('Survey Deleted!')
-    console.log(this.surveys);
-  }
-
-  getLink(ind: number) {
-    return '/fillSurvey/' + this.surveys[ind].key + '/form';
-  }
-  getResponses(i: number) {
-    return '/surveyResponses/' + this.surveys[i].key + '/view';
   }
 }

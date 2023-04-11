@@ -1,1 +1,224 @@
-<p>edit-survey works!</p>
+<!-- Form Header -->
+<div class="d-flex justify-content-center">
+  <div class="card mt-3 w-50">
+    <h1 class="card-header">
+      <input type="text" [(ngModel)]="formName" class="header-input" />
+    </h1>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <input type="text" [(ngModel)]="description" class="header-input" />
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Form -->
+<div class="d-flex justify-content-center">
+  <div class="w-50">
+    <form
+      class="form-control p-4 mt-4"
+      #surveyForm="ngForm"
+      (ngSubmit)="onSubmitSurveyForm(surveyForm)"
+    >
+      <h1>Edit Form</h1>
+      <hr />
+      <div
+        *ngFor="let input of form?.questions; let i = index"
+        id="displayFormInputs"
+      >
+        <!-- Paragraph -->
+        <div *ngIf="input.type === 'paragraph'" class="form-group">
+          <label for="paragraph{{ i }}" class="question-label">
+            <strong>
+              {{ i + 1 }}.
+              <input type="text" value="{{ input.label }}" #paragraph />
+            </strong>
+          </label>
+          <button
+            type="button"
+            class="btn btn-primary float-end"
+            (click)="editQuestion(i, paragraph.value)"
+          >
+            Edit
+          </button>
+          <input
+            id="question{{ i }}"
+            class="form-control"
+            type="text"
+            placeholder="Enter response"
+            name="question{{ i }}"
+            disabled
+          />
+        </div>
+
+        <!-- telephone -->
+        <div *ngIf="input.type === 'tel'" class="form-group">
+          <label for="tel{{ i }}" class="question-label"
+            ><strong
+              >{{ i + 1 }}.
+              <input type="text" value="{{ input.label }}" #telephone /></strong
+          ></label>
+          <button
+            type="button"
+            class="btn btn-primary float-end"
+            (click)="editQuestion(i, telephone.value)"
+          >
+            Edit
+          </button>
+          <input
+            id="tel{{ i }}"
+            class="form-control"
+            type="tel"
+            placeholder="Enter response"
+            name="question{{ i }}"
+            disabled
+          />
+        </div>
+
+        <!-- number -->
+        <div *ngIf="input.type === 'number'" class="form-group">
+          <label for="number{{ i }}" class="question-label">
+            <strong
+              >{{ i + 1 }}.
+              <input type="text" value="{{ input.label }}" #number
+            /></strong>
+          </label>
+          <button
+            type="button"
+            class="btn btn-primary float-end"
+            (click)="editQuestion(i, number.value)"
+          >
+            Edit
+          </button>
+          <input
+            class="form-control"
+            type="number"
+            placeholder="Enter number"
+            name="question{{ i }}"
+            disabled
+          />
+        </div>
+
+        <!-- Date -->
+        <div *ngIf="input.type === 'date'" class="form-group">
+          <label for="DateQuestion" class="question-label"
+            ><strong
+              >{{ i + 1 }}.
+              <input type="text" value="{{ input.label }}" #date /></strong
+          ></label>
+          <button
+            type="button"
+            class="btn btn-primary float-end"
+            (click)="editQuestion(i, date.value)"
+          >
+            Edit
+          </button>
+          <input
+            type="date"
+            class="form-control"
+            id="DateQuestion"
+            name="date"
+            disabled
+          />
+        </div>
+
+        <!-- Radio -->
+        <div *ngIf="input.type === 'radio'">
+          <label for="radioButtonQuestion" class="question-label"
+            ><strong
+              >{{ i + 1 }}.
+              <input
+                type="text"
+                value="{{ input.label }}"
+                #radio /></strong></label
+          ><button
+            type="button"
+            class="btn btn-primary float-end"
+            (click)="editQuestion(i, radio.value)"
+          >
+            Edit
+          </button>
+          <div *ngFor="let option of input.options; let z = index">
+            <div class="radio pe-2">
+              <input
+                type="radio"
+                name="optradio"
+                id="radioButtonOption{{ z }}"
+              />
+              <label for="radioButtonOption{{ z }}" class="ps-2">{{
+                option
+              }}</label>
+            </div>
+          </div>
+        </div>
+
+        <!--checkbox-->
+        <div *ngIf="input.type === 'checkbox'">
+          <label for="checkBoxQuestion" class="question-label"
+            ><strong
+              >{{ i + 1 }}.
+              <input
+                type="text"
+                value="{{ input.label }}"
+                #checkbox /></strong></label
+          ><button
+            type="button"
+            class="btn btn-primary float-end"
+            (click)="editQuestion(i, checkbox.value)"
+          >
+            Edit
+          </button>
+          <div *ngFor="let option of input.options; let z = index">
+            <div class="checkbox pe-2">
+              <input
+                type="checkbox"
+                name="optcheckbox"
+                id="checkBoxOption{{ z }}"
+              />
+              <label for="checkBoxOption{{ z }}" class="ps-2">{{
+                option
+              }}</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Select -->
+        <div *ngIf="input.type === 'select'">
+          <label for="selectInputQuestion" class="question-label"
+            ><strong
+              >{{ i + 1 }}.
+              <input
+                type="text"
+                value="{{ input.label }}"
+                #select /></strong></label
+          ><button
+            type="button"
+            class="btn btn-primary float-end"
+            (click)="editQuestion(i, select.value)"
+          >
+            Edit
+          </button>
+          <select
+            class="form-select"
+            id="exampleFormControlSelect"
+            name="SelectQuestion"
+          >
+            <option selected>Select Type of Input</option>
+            <option *ngFor="let option of input.options" value="{{ option }}">
+              {{ option }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <ng-template [ngIf]="form?.questions.length > 0">
+        <div style="height: 30px">
+          <button type="submit" class="btn clk-button-add" (click)="onCancel()">
+            Cancel
+          </button>
+          <button type="submit" class="btn clk-button-add">Save</button>
+        </div>
+      </ng-template>
+    </form>
+  </div>
+</div>

@@ -9,6 +9,7 @@ router.get("/surveys", FormController.getSurveys);
 router.post("/survey/response", FormController.saveSurveyResponse);
 router.post("update/survey/:key", FormController.updateSurvey)
 router.get("/survey/:key/responses", FormController.getSurveyResponses);
+router.post("/survey/editQuestion/:id", FormController.editQuestion)
 router.delete("/survey/:key", FormController.deleteSurvey)
 router.get("/", (_, res) => res.send("Server up and running!"));
 

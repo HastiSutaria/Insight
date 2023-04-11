@@ -3,6 +3,8 @@ const Questions = require("../models/question");
 const User = require("../models/user");
 const randomString = require("randomstring");
 const jwt = require("jsonwebtoken");
+const mongoose = require('mongoose')
+
 module.exports = {
 	register: async (req, res) => {
 		let userData = req.body;
@@ -188,6 +190,21 @@ module.exports = {
 				.json({ status: error.statusCode, error: error.message });
 		}
 		
+	},
+	
+	editQuestion: async (req,res) => {
+		try {
+			const id = req.params.id
+			const label = req.body.label
+			await Questions.findByIdAndUpdate(id, {label}).then(() => {
+				res.status(200).send('Question Updated!')
+			}).catch(err => {
+				console.log(err)
+			})
+
+		} catch(error) {
+			res.status(error.statusCode).json({status: error.statusCode, error: error.message})
+		}
 	},
 
 	getSurveyResponses: async (req, res) => {
