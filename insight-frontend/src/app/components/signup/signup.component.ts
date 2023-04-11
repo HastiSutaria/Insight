@@ -90,7 +90,7 @@ export class SignupComponent implements OnInit {
         localStorage.setItem('token', res.token);
         this.toastr.success('Success', "You've successfully registered!");
 
-        this._router.navigate(['/admin-dashboard'])
+        this._router.navigate(['/login'])
       },
       (err) => this.toastr.error(err.error)
     );

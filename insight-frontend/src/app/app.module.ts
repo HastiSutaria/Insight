@@ -19,6 +19,7 @@ import { FillSurveyComponent } from './components/fill-survey/fill-survey.compon
 import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
 import { ToastrModule } from 'ngx-toastr';
 import { EditSurveyComponent } from './components/admin-dashboard/edit-survey/edit-survey.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { EditSurveyComponent } from './components/admin-dashboard/edit-survey/ed
     FillSurveyComponent,
     SurveyResponsesComponent,
     EditSurveyComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

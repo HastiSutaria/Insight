@@ -26,11 +26,7 @@ label {
 }
 
 
-.clk-button {
-  background-color: #2b7a78;
-  color: white;
-  /* float: right; */
-}
+
 
 .clk-button-add:hover{
   background-color: #3aafa9;
@@ -42,6 +38,12 @@ label {
   color: white;
   float: right;
   margin-right: 8px;
+}
+
+.clk-button {
+  background-color: #2b7a78;
+  color: white;
+  /* float: right; */
 }
 
 
@@ -57,7 +59,19 @@ label {
   color: black;
 
 }
+.inputstyle{
+   background-color: #2b7a78;
+   color: white;
+}
 .card {
+
   box-shadow: 0 10px 17px 0 rgba(2, 66, 66, 0.1);
 
+}
+
+.card-header{
+  
+  background-color: #2b7a78;
+  color: white
+  ;
 }

@@ -6,7 +6,7 @@
 }
 
 .clk-button:hover {
-  background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
+background-color: #3aafa9;
 }
 .hovertext:before {
   content: attr(data-hover);
@@ -26,6 +26,10 @@
   top: 105%;
 }
 
+
+.onhover:hover{
+  background-color: #3aafa9
+}
 .hovertext:hover:before {
   opacity: 1;
   visibility: visible;

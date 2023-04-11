@@ -19,8 +19,10 @@ export class AuthService {
   }
 
   loginUser(user: any) {
+
     return this.http.post<any>(this._loginUrl, user);
   }
+
   
 
   loggedIn() {

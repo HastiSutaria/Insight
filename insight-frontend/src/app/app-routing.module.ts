@@ -9,12 +9,17 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { FillSurveyComponent } from './components/fill-survey/fill-survey.component';
 import { SurveyResponsesComponent } from './components/survey-responses/survey-responses.component';
 import { EditSurveyComponent } from './components/admin-dashboard/edit-survey/edit-survey.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',
+  },
+  {
+path: 'home',
+component: HomeComponent,
   },
   {
     path: 'login',

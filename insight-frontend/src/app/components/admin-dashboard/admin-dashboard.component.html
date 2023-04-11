@@ -37,27 +37,27 @@
       
                       <!--Footer states-->
                       <div class="card-footer py-0 border-top">
-                          <div class="row">
-                              <div class="col text-center p-3 ">
+                          <div class="row" style="margin: 0 -16px">
+                              <div class="col text-center p-3 onhover ">
                                
                                 <span class="hovertext" data-hover="Fill survey">
                                   <i  [routerLink]="getLink(i)"  class="bi bi-ui-checks"></i>
                                 </span>
                               </div>
       
-                              <div class="col p-3 text-center border-end border-start">
+                              <div [routerLink]="editSurvey(i)" class="col p-3 text-center border-end border-start onhover" >
                                 
                                 <span class="hovertext" data-hover="Edit survey">
-                                  <i [routerLink]=""  class="bi bi-pencil-square"></i>
+                                  <i class="bi bi-pencil-square"></i>
                                 </span>
                               </div>
-                              <div class="col p-3 text-center border-end ">
+                              <div class="col p-3 text-center border-end onhover">
                                 
                                 <span class="hovertext" data-hover="View Responses">
                                   <i [routerLink]="getResponses(i)"  class="bi bi-eye-fill"></i>
                                 </span>
                               </div>
-                              <div class="col p-3 text-center">
+                              <div class="col p-3 text-center onhover">
                                
                                 <span class="hovertext" data-hover="Delete survey">
                                   <i (click)="deleteSurvey(i)" class="bi bi-trash-fill"></i>

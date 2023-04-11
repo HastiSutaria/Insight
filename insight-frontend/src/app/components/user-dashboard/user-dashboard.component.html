@@ -13,7 +13,7 @@
         </div> -->
 
       <div class="col mb-3" *ngFor="let survey of surveys; index as i">
-        <div class="container">
+       
           <div class="row">
               <div class="col">
                   <div class="card" style="width: 17rem; height: 12rem;">
@@ -31,9 +31,9 @@
                       </div>
       
                       <!--Footer states-->
-                      <div class="card-footer py-0 border-top">
+                      <div class="card-footer py-0 border-top onhover">
                           <div class="row">
-                              <div class="col text-center p-3 ">
+                              <div class="col text-center p-3">
                                
                                 <span class="hovertext" data-hover="Fill survey">
                                   <i  [routerLink]="getLink(i)"  class="bi bi-ui-checks"></i>
@@ -50,7 +50,7 @@
               
   
           </div>
-      </div>
+      
       </div>
       </div>
 

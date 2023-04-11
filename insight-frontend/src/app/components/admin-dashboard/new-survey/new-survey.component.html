@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-  <div class="card mt-3 w-50">
+  <div class="card mt-5 w-50">
     <h1 class="card-header">
      {{ formName }}
     </h1>
@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div class="d-flex justify-content-center mt-4">
+<div class="d-flex justify-content-center mt-5">
   <div class="w-50">
     <form
       [formGroup]="dynamicForm"
@@ -19,7 +19,7 @@
       (ngSubmit)="onAddInputElement()"
     >
       <div class="input-group input-group-lg">
-        <span class="input-group-text">Question</span>
+        <span class="input-group-text inputstyle px-4">Question</span>
         <input
           class="form-control"
           type="text"
@@ -28,8 +28,8 @@
         />
       </div>
 
-      <div class="input-group mt-2">
-        <span class="input-group-text pe-4" for="inputGroupSelect02"
+      <div class="input-group input-group-lg mt-2">
+        <span class="input-group-text  inputstyle" for="inputGroupSelect02"
           >Input Type</span
         >
         <select class="form-select" formControlName="type">
@@ -113,7 +113,7 @@
         <!-- Paragraph -->
         <div *ngIf="input.type === 'paragraph'" class="form-group">
           <label for="paragraph{{ i }}" class="question-label"
-            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+            >{{ i + 1 }}. {{ input.label }}</label
           >
           <input
             class="form-control"
@@ -129,7 +129,7 @@
         <!-- telephone -->
         <div *ngIf="input.type === 'tel'" class="form-group">
           <label for="tel{{ i }}" class="question-label"
-            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+            >{{ i + 1 }}. {{ input.label }}</label
           >
           <input
             class="form-control"
@@ -146,7 +146,7 @@
         <!-- number -->
         <div *ngIf="input.type === 'number'" class="form-group">
           <label for="number{{ i }}" class="question-label">
-            <strong>{{ i + 1 }}. {{ input.label }}</strong>
+            {{ i + 1 }}. {{ input.label }}
           </label>
           <input 
           class="form-control"
@@ -163,7 +163,7 @@
         <!-- Date -->
         <div *ngIf="input.type === 'date'" class="form-group">
           <label for="DateQuestion" class="question-label"
-            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+            >{{ i + 1 }}. {{ input.label }}</label
           >
 
           <input
@@ -179,7 +179,7 @@
         <!-- Radio -->
         <div *ngIf="input.type === 'radio'">
           <label for="radioButtonQuestion" class="question-label"
-            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+            >{{ i + 1 }}. {{ input.label }}</label
           >
           <div *ngFor="let option of input.options; let z = index">
             <div class="radio pe-2">
@@ -196,7 +196,7 @@
         <!--checkbox-->
         <div *ngIf="input.type === 'checkbox'">
           <label for="checkBoxQuestion" class="question-label"
-            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+            >{{ i + 1 }}. {{ input.label }}</label
           >
           <div *ngFor="let option of input.options; let z = index">
             <div class="checkbox pe-2">
@@ -214,7 +214,7 @@
         <!-- Select -->
         <div *ngIf="input.type === 'select'">
           <label for="selectInputQuestion" class="question-label"
-            ><strong>{{ i + 1 }}. {{ input.label }}</strong></label
+            >{{ i + 1 }}. {{ input.label }}</label
           >
           <select
             class="form-select"

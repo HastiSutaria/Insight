@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormDataService } from 'src/app/services/form-data.service';
-import {Question} from '../../../../../../insight-backend/app/models/question.js'
+import { Question } from '../../../../../../insight-backend/app/models/question.js';
 
 @Component({
   selector: 'app-edit-survey',
@@ -13,16 +13,16 @@ export class EditSurveyComponent {
   key: string;
   form: any;
   questions: [] = [];
-  formName: string
-  description: string
-  
+  formName: string;
+  description: string;
+
   constructor(
     private formService: FormDataService,
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService
-    ) {}
-    
+  ) {}
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.key = params['key'];
@@ -38,12 +38,13 @@ export class EditSurveyComponent {
   }
 
   editQuestion(ind: number, label: string) {
-    const question: Question = this.questions[ind]
-    this.formService.editQuestionById(question._id, label)
-    console.log(this.questions[ind])
+    setTimeout(() => {
+      const question: Question = this.questions[ind];
+      this.formService.editQuestionById(question._id, label);
+    }, 2000);
   }
-  
+
   onSubmitSurveyForm(surveyForm: any) {
-    console.log('Survey Editted')
+    console.log('Survey Editted');
   }
 }

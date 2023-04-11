@@ -1,12 +1,12 @@
 <!-- Form Header -->
 <div class="d-flex justify-content-center">
-  <div class="card mt-3 w-50">
+  <div class="card mt-5 w-50">
     <h1 class="card-header">
-      <input type="text" [(ngModel)]="formName" class="header-input" />
+      <input type="text" [(ngModel)]="formName" class="card-header-input" />
     </h1>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
-        <input type="text" [(ngModel)]="description" class="header-input" />
+        <input type="text" [(ngModel)]="description" class="text-body-input" />
       </blockquote>
     </div>
   </div>
@@ -21,7 +21,7 @@
       (ngSubmit)="onSubmitSurveyForm(surveyForm)"
     >
       <h1>Edit Form</h1>
-      <hr />
+    
       <div
         *ngFor="let input of form?.questions; let i = index"
         id="displayFormInputs"
@@ -29,10 +29,8 @@
         <!-- Paragraph -->
         <div *ngIf="input.type === 'paragraph'" class="form-group">
           <label for="paragraph{{ i }}" class="question-label">
-            <strong>
-              {{ i + 1 }}.
-              <input type="text" value="{{ input.label }}" #paragraph />
-            </strong>
+            {{ i + 1 }}.
+            <input clas="text-body-input" type="text" value="{{ input.label }}" #paragraph (change)="editQuestion(i,paragraph.value)"/>
           </label>
           <button
             type="button"
@@ -54,10 +52,8 @@
         <!-- telephone -->
         <div *ngIf="input.type === 'tel'" class="form-group">
           <label for="tel{{ i }}" class="question-label"
-            ><strong
-              >{{ i + 1 }}.
-              <input type="text" value="{{ input.label }}" #telephone /></strong
-          ></label>
+            >{{ i + 1 }}.
+              <input type="text" value="{{ input.label }}" #telephone /></label>
           <button
             type="button"
             class="btn btn-primary float-end"
@@ -78,10 +74,9 @@
         <!-- number -->
         <div *ngIf="input.type === 'number'" class="form-group">
           <label for="number{{ i }}" class="question-label">
-            <strong
-              >{{ i + 1 }}.
+            {{ i + 1 }}.
               <input type="text" value="{{ input.label }}" #number
-            /></strong>
+            />
           </label>
           <button
             type="button"
@@ -102,10 +97,8 @@
         <!-- Date -->
         <div *ngIf="input.type === 'date'" class="form-group">
           <label for="DateQuestion" class="question-label"
-            ><strong
-              >{{ i + 1 }}.
-              <input type="text" value="{{ input.label }}" #date /></strong
-          ></label>
+            >{{ i + 1 }}.
+              <input type="text" value="{{ input.label }}" #date /></label>
           <button
             type="button"
             class="btn btn-primary float-end"
@@ -125,12 +118,11 @@
         <!-- Radio -->
         <div *ngIf="input.type === 'radio'">
           <label for="radioButtonQuestion" class="question-label"
-            ><strong
-              >{{ i + 1 }}.
+            >{{ i + 1 }}.
               <input
                 type="text"
                 value="{{ input.label }}"
-                #radio /></strong></label
+                #radio /></label
           ><button
             type="button"
             class="btn btn-primary float-end"
@@ -155,12 +147,11 @@
         <!--checkbox-->
         <div *ngIf="input.type === 'checkbox'">
           <label for="checkBoxQuestion" class="question-label"
-            ><strong
-              >{{ i + 1 }}.
+            >{{ i + 1 }}.
               <input
                 type="text"
                 value="{{ input.label }}"
-                #checkbox /></strong></label
+                #checkbox /></label
           ><button
             type="button"
             class="btn btn-primary float-end"
@@ -185,12 +176,11 @@
         <!-- Select -->
         <div *ngIf="input.type === 'select'">
           <label for="selectInputQuestion" class="question-label"
-            ><strong
-              >{{ i + 1 }}.
+            >{{ i + 1 }}.
               <input
                 type="text"
                 value="{{ input.label }}"
-                #select /></strong></label
+                #select /></label
           ><button
             type="button"
             class="btn btn-primary float-end"

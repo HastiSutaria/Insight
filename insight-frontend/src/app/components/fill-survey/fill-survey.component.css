@@ -22,3 +22,20 @@ input.ng-invalid.ng-touched {
     font-weight:500;
     font-size: 1rem;
 }
+
+.inputstyle{
+    background-color: #2b7a78;
+    color: white;
+ }
+
+ .clk-button {
+    background-color: #2b7a78;
+    color: white;
+
+    /* float: right; */
+  }
+  
+  .clk-button-add:hover{
+    background-color: #3aafa9;
+  }
+  

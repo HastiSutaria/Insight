@@ -32,7 +32,29 @@ module.exports = {
 
 	login: async (req, res) => {
 		let userData = req.body;
-		await User.findOne({ email: userData.email })
+		if(userData.admin){
+			await User.findOne({ email: userData.email })
+			.then((user) => {
+				if (!user) {
+					res.status(401).send("Invalid Email");
+				} else if (user.password !== userData.password) {
+					res.status(401).send("Invalid Password");
+				} else {
+					let payload = { subject: user.__v };
+					let token = jwt.sign(payload, "secretKey");
+					res.status(200).send({ token });
+
+				}
+			}).
+			then(() => {
+				
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		}
+		else{
+			await User.findOne({ email: userData.email })
 			.then((user) => {
 				if (!user) {
 					res.status(401).send("Invalid Email");
@@ -48,6 +70,8 @@ module.exports = {
 			.catch((err) => {
 				console.log(err);
 			});
+		}
+		
 	},
 
 	createSurvey: async (req, res) => {

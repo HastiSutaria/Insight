@@ -2,7 +2,7 @@
 <div class="container w-75 p-5">
 
   <div class="card mb-5">
-    <h1 class="card-header">
+    <h1 class="card-header inputstyle">
       {{ form?.name  }}
     </h1>
     <div class="card-body">
@@ -78,9 +78,9 @@
           
 
         <div *ngIf="input.type === 'date'" class="form-group">
-          <label class="surveyQuestions" for="date{{ i }}">{{ i + 1 }}.  {{input.label}}</label><br>
+          <!-- <label class="surveyQuestions" for="date{{ i }}">{{ i + 1 }}.  {{input.label}}</label><br> -->
           <mat-form-field appearance="outline">
-            
+            <mat-label class="surveyQuestions" for="date{{ i }}">{{ i + 1 }}.  {{input.label}}</mat-label>
             <input
             class="form-control w-25"
               matInput
@@ -90,10 +90,10 @@
               (click)="picker.open()"
               required
             />
-            <mat-datepicker-toggle
+            <!-- <mat-datepicker-toggle
               matSuffix
               [for]="picker"
-            ></mat-datepicker-toggle>
+            ></mat-datepicker-toggle> -->
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           
@@ -159,12 +159,14 @@
           >
         </div>
       </div>
+    <div class="text-end">
       <button
-        [disabled]="!surveyForm.valid"
-        type="submit"
-        class="btn btn-primary"
-      >
-        Save
-      </button>
+      [disabled]="!surveyForm.valid"
+      type="submit"
+      class="btn clk-button"
+    >
+      Save
+    </button>
+    </div>
   </form>
 </div>
