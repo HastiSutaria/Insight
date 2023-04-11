@@ -30,7 +30,7 @@
         <div *ngIf="input.type === 'paragraph'" class="form-group">
           <label for="paragraph{{ i }}" class="question-label">
             {{ i + 1 }}.
-            <input clas="text-body-input" type="text" value="{{ input.label }}" #paragraph (change)="editQuestion(i,paragraph.value)"/>
+            <input type="text" value="{{ input.label }}" #paragraph (change)="editQuestion(i,paragraph.value)"/>
           </label>
           <!-- <button
             type="button"

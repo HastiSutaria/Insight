@@ -7,20 +7,20 @@
   outline: none;
   background-color: #2b7a78;
   color: white;
-  border: 0px
+  border: 0px;
 }
 
 .card-header-input:focus {
-    outline: none;
-    border-bottom: 2px solid white;
+  outline: none;
+  border-bottom: 2px solid white;
 }
 
-.text-body-input{
+.text-body-input {
   outline: none;
   background-color: white;
   border: 0px;
 }
-.text-body-input:focus{
+.text-body-input:focus {
   outline: none;
   border-bottom: 2px solid black;
 }
@@ -29,10 +29,9 @@
   margin: 1.5rem 0.5rem;
   margin: 1.5rem 0.5rem;
 }
-.clk-button-add:hover{
+.clk-button-add:hover {
   background-color: #3aafa9;
 }
-
 
 .clk-button-add {
   background-color: #2b7a78;
@@ -49,7 +48,6 @@ label {
   border-left: 10px solid #212529;
 }
 
-
 .clk-button:hover {
   background-image: linear-gradient(to bottom, #4d4b4b 20%, #101011 100%);
 }
@@ -57,13 +55,13 @@ label {
 .question-label {
   font-size: 18px;
 }
-.card-header{
+.card-header {
   background-color: #2b7a78;
 }
 .bi {
   color: black;
 }
 
-h1{
+h1 {
   color: #2b7a78;
 }

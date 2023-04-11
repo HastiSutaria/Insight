@@ -42,15 +42,6 @@ background-color: #3aafa9;
   background-color: #2b7a78;
   color: white;
 }
-.bi-trash-fill {
-  cursor: pointer;
-}
-.bi-ui-checks {
-  cursor: pointer;
-}
-.bi-pencil-square {
-  cursor: pointer;
-}
 
 .adminheader {
   display: flex;

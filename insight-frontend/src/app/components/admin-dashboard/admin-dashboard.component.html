@@ -1,11 +1,10 @@
 <div class="container">
   <div class="mt-4 adminheader">
     <h1>My workspace</h1>
-    
-      <button type="button" class="btn clk-button" (click)="createForm()">
-        <i class="bi bi-file-earmark-plus"></i> Create Survey
-      </button>
-    
+
+    <button type="button" class="btn clk-button" (click)="createForm()">
+      <i class="bi bi-file-earmark-plus"></i> Create Survey
+    </button>
   </div>
 
   <div *ngIf="newForm">
@@ -16,67 +15,73 @@
     <h2>Surveys</h2>
 
     <div class="row">
-
       <div class="col mb-3" *ngFor="let survey of surveys; index as i">
         <div class="container">
           <div class="row">
-              <div class="col-xl-7 mb-3 mb-lg-5">
-                  <div class="card" style="width: 20rem; height: 12rem;">
-                      <div class="card-body">
-                          <div class="d-flex flex-column text-center align-items-center">
-      
-                              <div class="flex-grow-1 pt-4">
-                                  
-                                  <h5>{{ survey.name }}</h5>
-                                  <span class="d-block text-muted m-2">{{ survey.description}}</span>
-                        
-                              
-                              </div>
-                          </div>
-                      </div>
-      
-                      <!--Footer states-->
-                      <div class="card-footer py-0 border-top">
-                          <div class="row" style="margin: 0 -16px">
-                              <div class="col text-center p-3 onhover ">
-                               
-                                <span class="hovertext" data-hover="Fill survey">
-                                  <i  [routerLink]="getLink(i)"  class="bi bi-ui-checks"></i>
-                                </span>
-                              </div>
-      
-                              <div [routerLink]="editSurvey(i)" class="col p-3 text-center border-end border-start onhover" >
-                                
-                                <span class="hovertext" data-hover="Edit survey">
-                                  <i class="bi bi-pencil-square"></i>
-                                </span>
-                              </div>
-                              <div class="col p-3 text-center border-end onhover">
-                                
-                                <span class="hovertext" data-hover="View Responses">
-                                  <i [routerLink]="getResponses(i)"  class="bi bi-eye-fill"></i>
-                                </span>
-                              </div>
-                              <div class="col p-3 text-center onhover">
-                               
-                                <span class="hovertext" data-hover="Delete survey">
-                                  <i (click)="deleteSurvey(i)" class="bi bi-trash-fill"></i>
-                                </span>
-                              </div>
-                              
-                          </div>
-                      </div>
+            <div class="col-xl-7 mb-3 mb-lg-5">
+              <div class="card" style="width: 20rem; height: 12rem">
+                <div class="card-body">
+                  <div
+                    class="d-flex flex-column text-center align-items-center"
+                  >
+                    <div class="flex-grow-1 pt-4">
+                      <h5>{{ survey.name }}</h5>
+                      <span class="d-block text-muted m-2">{{
+                        survey.description
+                      }}</span>
+                    </div>
                   </div>
-              </div>       
-              
-  
+                </div>
+
+                <!--Footer states-->
+                <div class="card-footer py-0 border-top">
+                  <div class="row" style="margin: 0 -16px">
+                    <div
+                      [routerLink]="getLink(i)"
+                      class="col text-center p-3 onhover border-end"
+                      role="button"
+                    >
+                      <span class="hovertext" data-hover="Fill survey">
+                        <i class="bi bi-ui-checks"></i>
+                      </span>
+                    </div>
+
+                    <div
+                      [routerLink]="editSurvey(i)"
+                      class="col text-center p-3 onhover border-end"
+                      role="button"
+                    >
+                      <span class="hovertext" data-hover="Edit survey">
+                        <i class="bi bi-pencil-square"></i>
+                      </span>
+                    </div>
+
+                    <div
+                      [routerLink]="getResponses(i)"
+                      class="col text-center p-3 onhover border-end"
+                      role="button"
+                    >
+                      <span class="hovertext" data-hover="View Responses">
+                        <i class="bi bi-eye-fill"></i>
+                      </span>
+                    </div>
+
+                    <div
+                      (click)="deleteSurvey(i)"
+                      class="col p-3 text-center onhover"
+                      role="button"
+                    >
+                      <span class="hovertext" data-hover="Delete survey">
+                        <i class="bi bi-trash-fill"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
       </div>
-      </div>
-
-
     </div>
-
-    
   </div>
 </div>
