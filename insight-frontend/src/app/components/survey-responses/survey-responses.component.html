@@ -5,19 +5,23 @@
 
       <div class="mt-4">
         <table mat-table [dataSource]="dynamicData" class="mat-elevation-z8">
-        
-          <ng-container *ngFor="let col of dynamicColumns" matColumnDef="{{col}}">
-            <th mat-header-cell *matHeaderCellDef> {{ col }} </th>
-            <td mat-cell *matCellDef="let element"> {{ element[col] }} </td>
+          <ng-container
+            *ngFor="let col of dynamicColumns"
+            matColumnDef="{{ col }}"
+          >
+            <th mat-header-cell *matHeaderCellDef>{{ col }}</th>
+            <td mat-cell *matCellDef="let element">{{ element[col] }}</td>
           </ng-container>
-        
+
           <tr mat-header-row *matHeaderRowDef="dynamicColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: dynamicColumns;"></tr>
-        
+          <tr mat-row *matRowDef="let row; columns: dynamicColumns"></tr>
         </table>
       </div>
     </div>
-    
+
+    <button type="button" class="btn btn-light mt-4 float-end" (click)="saveToExcel()">
+      <i class="bi bi-file-earmark-spreadsheet-fill" style="color: #2b7a78"></i
+      >Download Data
+    </button>
   </div>
-  
 </body>

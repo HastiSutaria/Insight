@@ -19,6 +19,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
     "nodemon": "^2.0.22",
-    "randomstring": "^1.2.3"
+    "randomstring": "^1.2.3",
+    "xslx": "^1.0.0"
   }
 }

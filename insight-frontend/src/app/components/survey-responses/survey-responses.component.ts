@@ -47,6 +47,7 @@ export class SurveyResponsesComponent implements OnInit {
 
         for (let i = 0; i < this.form.questions[0].responses.length; i++) {
           let dynamicObj = {};
+          dynamicObj['No.'] = i+1
           
           for (let j = 0; j < this.form.questions.length; j++) {
             let lbl = this.form.questions[j].label;
@@ -54,11 +55,14 @@ export class SurveyResponsesComponent implements OnInit {
             dynamicObj['Email'] = this.form.questions[j].responses[i].email;
           }
           
-          dynamicObj['No.'] = i+1
           this.dynamicData.push(dynamicObj);
         }
         console.log(this.dynamicData);
       });
     });
+  }
+
+  saveToExcel() {
+    this.formService.exportAsExcelFile(this.dynamicData, this.form.name)
   }
 }
