@@ -19,17 +19,9 @@ const UserSchema = new Schema({
       type: String, 
       required: true
     },
-    confirmPassword: {
-      type: String, 
-      required: true
-    },
     acceptTerms: {
       type: Boolean,
       required: true
-    },
-    admin:{
-      type : Boolean,
-      default: false
     }
     
   },

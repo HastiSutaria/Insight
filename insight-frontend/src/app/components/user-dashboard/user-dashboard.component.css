@@ -35,6 +35,11 @@ body {
   opacity: 1;
   visibility: visible;
 }
- .onhover:hover{
-  background-color: #3aafa9
- }
+.onhover:hover {
+  background-color: #3aafa9;
+}
+
+.card {
+  width: 280px;
+  min-height: 215px;
+}

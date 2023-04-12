@@ -43,7 +43,9 @@ export class EditSurveyComponent {
       this.formService.editQuestionById(question._id, label);
     }, 2000);
   }
-
+  editSurvey(key: string){
+    
+  }
   onSubmitSurveyForm(surveyForm: any) {
 
     console.log('Survey Editted');

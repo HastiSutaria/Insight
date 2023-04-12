@@ -34,11 +34,12 @@ constructor(private formService:FormDataService, private route: ActivatedRoute, 
 onSubmitSurveyForm(surveyForm:NgForm){
 
 
-  console.log(surveyForm.value)
+  console.log('Survey Form Value', surveyForm.value)
   this.result['key'] = this.key
-  for (const id in  surveyForm.value ) {
-    if(id!=='email'){
-      this.result.responses.push({email:surveyForm.value.email, response:surveyForm.value[id]})
+
+  for (const label in  surveyForm.value ) {
+    if(label!=='email'){
+      this.result.responses.push({email:surveyForm.value.email, response:surveyForm.value[label], submittedAt : new Date()})
     }
   }
   

@@ -28,7 +28,7 @@ export class SurveyResponsesComponent implements OnInit {
       // Subscribe to any change in data
       this.formService.formByKey.subscribe((form) => {
         this.form = form;
-        console.log(this.form.questions);
+        // console.log(this.form.questions);
 
         // Extracting Emails from the data
         this.form.questions.map(
@@ -50,14 +50,16 @@ export class SurveyResponsesComponent implements OnInit {
           dynamicObj['No.'] = i+1
           
           for (let j = 0; j < this.form.questions.length; j++) {
+            // console.log('Submitted At', this.form.questions[j].responses[i])
             let lbl = this.form.questions[j].label;
-            dynamicObj[lbl] = this.form.questions[j].responses[i].response;
             dynamicObj['Email'] = this.form.questions[j].responses[i].email;
+            // dynamicObj['Submitted At'] = this.form.questions[j].responses[i].respo;
+            dynamicObj[lbl] = this.form.questions[j].responses[i].response;
           }
           
           this.dynamicData.push(dynamicObj);
         }
-        console.log(this.dynamicData);
+        // console.log(this.dynamicData);
       });
     });
   }
