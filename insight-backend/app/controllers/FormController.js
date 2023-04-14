@@ -54,9 +54,10 @@ module.exports = {
         } else if (!passwordIsValid) {
           res.status(401).send("Invalid Password");
         } else {
+          let username = user.username
           let payload = { subject: user.__v };
           let token = jwt.sign(payload, "secretKey");
-          res.status(200).send({ token });
+          res.status(200).send({ token, username });
         }
       })
       .catch((err) => {
