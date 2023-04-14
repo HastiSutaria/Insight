@@ -32,7 +32,7 @@
         <span class="input-group-text  inputstyle" for="inputGroupSelect02"
           >Input Type</span
         >
-        <select class="form-select" formControlName="type">
+        <select class="form-select" formControlName="type" (change)="onOptionAdded()">
           <option selected>Select Type of Input</option>
           <option *ngFor="let type of inputTypes">{{ type }}</option>
         </select>
@@ -55,6 +55,8 @@
             class="btn btn-secondary mt-2 mr-2 clk-button-add"
             type="button"
             (click)="onAddOption()"
+            
+        
           >
             Add Option
           </button>
@@ -91,7 +93,7 @@
         </div>
       </div>
       <div style="height: 50px">
-        <button class="btn mt-3 clk-button" type="submit">Add</button>
+        <button class="btn mt-3 clk-button" type="submit" [disabled]="isButtonDisabled">Add</button>
       </div>
     </form>
   </div>

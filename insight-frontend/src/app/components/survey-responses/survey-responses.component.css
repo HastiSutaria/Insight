@@ -1,8 +1,25 @@
-body{
-    background-image: linear-gradient(to bottom, #2b7a78 20%, #3aafa9 100%);
-  }
+
   h2{
-    color: white;
+    color: #2b7a78;
     margin: 0;
     
+  }
+  .clk-button {
+    background-color: #2b7a78;
+    color: white;
+    margin-left: auto;
+    /* float: right; */
+  }
+  
+  .clk-button:hover {
+  background-color: #3aafa9;
+  }
+
+  .chart {
+    width: 600px;
+    height: 300px;
+    display: flex
+  }
+  .heading{
+    display: flex;
   }

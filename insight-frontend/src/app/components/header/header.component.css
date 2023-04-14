@@ -22,6 +22,7 @@
 
 header{
     background-color: #2b7a78;
+    position: sticky;
 }
 .dropdown-menu{
     background-color: white;

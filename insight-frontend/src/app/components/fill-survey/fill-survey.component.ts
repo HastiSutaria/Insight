@@ -19,6 +19,9 @@ constructor(private formService:FormDataService, private route: ActivatedRoute, 
 
 }
 
+
+  
+
   ngOnInit(): void {
     this.route.params.subscribe((params)=>{
       this.key = params['key']
@@ -26,14 +29,14 @@ constructor(private formService:FormDataService, private route: ActivatedRoute, 
       this.formService.formByKey.subscribe((form)=>{
         this.form = form;
         this.questions = this.form.questions;
-        console.log(this.form);
+        console.log(this.form.questions);
       })
       
   })
 }
 onSubmitSurveyForm(surveyForm:NgForm){
 
-
+  
   console.log('Survey Form Value', surveyForm.value)
   this.result['key'] = this.key
 
@@ -47,6 +50,12 @@ onSubmitSurveyForm(surveyForm:NgForm){
  this.toastr.success('Success',"You've filled the survey!")
  this.router.navigate(['/surveys']); 
 
+}
+
+onCancel() {
+  this.router.navigate(['admin-dashboard']).then(() => {
+    window.location.reload();
+  });
 }
 
 }

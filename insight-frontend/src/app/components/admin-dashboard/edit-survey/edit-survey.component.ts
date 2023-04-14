@@ -52,4 +52,10 @@ export class EditSurveyComponent {
     this.toastr.success('Success', "Survey updated!");
     this.router.navigate(['/admin-dashboard'])
   }
+
+  onCancel() {
+    this.router.navigate(['admin-dashboard']).then(() => {
+      window.location.reload();
+    });
+  }
 }

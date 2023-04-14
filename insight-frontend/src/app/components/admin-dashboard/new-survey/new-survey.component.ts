@@ -28,7 +28,28 @@ export class NewSurveyComponent implements OnInit {
   inputTypes: string[] = ['paragraph','checkbox', 'date', 'radio', 'select', 'tel', 'number', ];
 
   constructor(private activatedRoute: ActivatedRoute, private formDataService: FormDataService, private router: Router, private toastr: ToastrService) {}
+  isButtonDisabled = true; // Initialize button1 as disabled
 
+ 
+  onOptionAdded() {
+    // Option added event handler
+    console.log('Option added');
+    if(this.dynamicForm.value.type === 'checkbox' || this.dynamicForm.value.type === 'radio' || this.dynamicForm.value.type ==='select'){
+         this.isButtonDisabled =  true
+    }
+    else{
+      this.isButtonDisabled = false;
+      
+    }
+     // Enable the button
+  }
+
+  onSaveClick() {
+    // Button2 click event handler
+    console.log('Button 2 clicked');
+  
+  
+  } 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       console.log(params['name'], params['description']);
@@ -65,6 +86,7 @@ export class NewSurveyComponent implements OnInit {
   onAddOption() {
     const formControl = new FormControl(null);
     (<FormArray>this.dynamicForm.get('options')).push(formControl);
+    this.isButtonDisabled = false;
   }
 
   onSubmitSurveyForm(surveyForm: NgForm) {

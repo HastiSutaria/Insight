@@ -19,5 +19,9 @@ export class HeaderComponent {
     this.auth.logoutUser();
 
   }
+
+  getUsername(){
+   return this.auth.getUsername()
+  }
   
 }

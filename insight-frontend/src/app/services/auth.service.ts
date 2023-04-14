@@ -23,6 +23,10 @@ export class AuthService {
     return this.http.post<any>(this._loginUrl, user);
   }
 
+  getUsername(){
+    return localStorage.getItem('username');
+  }
+
   
 
   loggedIn() {

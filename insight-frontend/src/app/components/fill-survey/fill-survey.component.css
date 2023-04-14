@@ -28,10 +28,10 @@ input.ng-invalid.ng-touched {
     color: white;
  }
 
- .clk-button {
+ .clk-button-add {
     background-color: #2b7a78;
     color: white;
-
+    margin-right: 8px;
     /* float: right; */
   }
   

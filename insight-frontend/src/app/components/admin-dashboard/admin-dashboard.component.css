@@ -38,7 +38,7 @@ background-color: #3aafa9;
 .card:hover {
   box-shadow: 0 20px 27px 0 rgba(2, 66, 66, 0.1);
 }
-.card-footer {
+.card-header {
   background-color: #2b7a78;
   color: white;
 }
@@ -49,4 +49,13 @@ background-color: #3aafa9;
 
 h1 {
   margin: 0;
+}
+
+
+
+.bi-list{
+  font-size: 30px;
+  font-weight: bolder;
+  color: white;
+  cursor: pointer;
 }

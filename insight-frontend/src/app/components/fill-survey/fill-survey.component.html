@@ -160,10 +160,13 @@
         </div>
       </div>
     <div class="text-end">
+      <button type="submit" class="btn clk-button-add" (click)="onCancel()">
+        Cancel
+      </button>
       <button
       [disabled]="!surveyForm.valid"
       type="submit"
-      class="btn clk-button"
+      class="btn clk-button-add"
     >
       Save
     </button>

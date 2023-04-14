@@ -15,7 +15,7 @@
             <li  *ngIf="isLoggedIn()" class="nav-item dropdown" style="list-style-type: none;">
               <a class="nav-link dropdown-toggle" id="navbarDarkDropdownMenuLink" role="button"
                   data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-person-circle"></i> Welcome User
+                  <i class="bi bi-person-circle"></i> {{ getUsername() }}
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                   <li><a class="dropdown-item" routerLink="/"> <i class="fas fa-user-circle"></i> Profile</a></li>
