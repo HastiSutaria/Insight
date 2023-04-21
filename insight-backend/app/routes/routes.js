@@ -1,8 +1,15 @@
 const router = require("express").Router();
 const FormController = require("../controllers/FormController");
+const upload = require("../utils/storage/storage")
 
 router.post("/register", FormController.register);
 router.post("/login", FormController.login);
+
+router.get("/profile", FormController.profile);
+router.post("/editProfile", FormController.editProfile);
+
+router.get("/profilePicture", FormController.profilePicture);
+router.post("/profilePictureEdit", upload.single('profilePath'), FormController.profilePictureEdit);
 
 router.post("/create/survey", FormController.createSurvey);
 router.get("/survey/:key", FormController.surveyByKey);

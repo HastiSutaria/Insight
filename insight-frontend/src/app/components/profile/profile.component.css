@@ -1,0 +1,26 @@
+				                
+body{margin-top:20px;}
+
+.avatar{
+width:230px;
+height:223px;
+}
+.form-horizontal{
+    margin-left: 30px;
+}
+
+h3{
+    margin-left: 30px;
+}
+
+.clk-button{
+    background-color: #2b7a78;
+    color: white;
+    margin-top: 20px;
+
+  }
+  
+
+.clk-button:hover {
+    background-color: #3aafa9;
+  }

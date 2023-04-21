@@ -11,6 +11,8 @@ import { SurveyResponsesComponent } from './components/survey-responses/survey-r
 import { EditSurveyComponent } from './components/admin-dashboard/edit-survey/edit-survey.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './helpers/auth.guard';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SurveyAnalyticsComponent } from './components/admin-dashboard/survey-analytics/survey-analytics.component';
 const routes: Routes = [
   {
     path: '',
@@ -30,6 +32,12 @@ component: HomeComponent,
     component: SignupComponent,
   },
   {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+
+  {
     path: 'newSurvey',
     component: NewSurveyComponent,
     canActivate: [AuthGuard],
@@ -42,6 +50,11 @@ component: HomeComponent,
   component: SurveyResponsesComponent,
   canActivate: [AuthGuard],
 
+  },
+  {
+    path : 'surveyAnalytics/:key',
+    component : SurveyAnalyticsComponent,
+    canActivate : [AuthGuard]
   },
   { path: 'editSurvey/:key',
   component: EditSurveyComponent,

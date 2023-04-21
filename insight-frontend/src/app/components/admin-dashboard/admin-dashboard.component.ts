@@ -31,10 +31,14 @@ export class AdminDashboardComponent {
     return '/surveyResponses/' + this.surveys[ind].key;
   }
 
+  getAnalytics(ind: number) {
+    return '/surveyAnalytics/' + this.surveys[ind].key;
+  }
+
   editSurvey(ind: number) {
     return '/editSurvey/' + this.surveys[ind].key
   }
-  
+   
   deleteSurvey(ind: number) {
     this.formService
       .deleteSurvey(this.surveys[ind].key)

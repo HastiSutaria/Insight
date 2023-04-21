@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="card mt-5 w-50">
     <h1 class="card-header">
-     {{ formName }}
+      {{ formName }}
     </h1>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
@@ -28,11 +28,15 @@
         />
       </div>
 
-      <div class="input-group  mt-2">
-        <span class="input-group-text  inputstyle" for="inputGroupSelect02"
+      <div class="input-group mt-2">
+        <span class="input-group-text inputstyle" for="inputGroupSelect02"
           >Input Type</span
         >
-        <select class="form-select" formControlName="type" (change)="onOptionAdded()">
+        <select
+          class="form-select"
+          formControlName="type"
+          (change)="onOptionAdded()"
+        >
           <option selected>Select Type of Input</option>
           <option *ngFor="let type of inputTypes">{{ type }}</option>
         </select>
@@ -55,8 +59,6 @@
             class="btn btn-secondary mt-2 mr-2 clk-button-add"
             type="button"
             (click)="onAddOption()"
-            
-        
           >
             Add Option
           </button>
@@ -93,7 +95,13 @@
         </div>
       </div>
       <div style="height: 50px">
-        <button class="btn mt-3 clk-button" type="submit" [disabled]="isButtonDisabled">Add</button>
+        <button
+          class="btn mt-3 clk-button"
+          type="submit"
+          [disabled]="isButtonDisabled"
+        >
+          Add
+        </button>
       </div>
     </form>
   </div>
@@ -128,6 +136,59 @@
             disabled
           />
         </div>
+        <!-- toggle -->
+        <div *ngIf="input.type === 'toggle'" class="form-group">
+          <label for="toggle{{ i }}" class="question-label"
+            >{{ i + 1 }}. {{ input.label }}</label
+          >
+          <mat-slide-toggle
+            ngModel
+            #toggle="ngModel"
+            name="question{{ i }}"
+            class="form-control"
+            required
+          ></mat-slide-toggle>
+        </div>
+
+        <!-- slider  -->
+        <div *ngIf="input.type === 'slider'" class="form-group">
+          <label for="slider{{ i }}" class="question-label"
+            >{{ i + 1 }}. {{ input.label }}</label
+          >
+          <mat-slider
+            style="margin-left: 20px"
+            min="0"
+            max="1000"
+            step="10"
+            showTickMarks
+            discrete
+            [displayWith]="formatLabel"
+          >
+            <input
+              matSliderThumb
+              ngModel
+              #slider="ngModel"
+              name="question{{ i }}"
+              required
+            />
+          </mat-slider>
+        </div>
+
+        <!-- textarea -->
+        <div *ngIf="input.type === 'textarea'" class="form-group">
+          <label for="textarea{{ i }}" class="question-label">
+            {{ i + 1 }}. {{ input.label }}
+          </label>
+          <ckeditor
+            [editor]="Editor"
+            ngModel
+            #textarea="ngModel"
+            name="question{{ i }}"
+            required
+            disabled
+          ></ckeditor>
+        </div>
+
         <!-- telephone -->
         <div *ngIf="input.type === 'tel'" class="form-group">
           <label for="tel{{ i }}" class="question-label"
@@ -150,21 +211,23 @@
           <label for="number{{ i }}" class="question-label">
             {{ i + 1 }}. {{ input.label }}
           </label>
-          <input 
-          class="form-control"
-          type="number"
-          min="0" max="10000000000"
-          placeholder="Enter number"
-          name="question{{i}}"
-          ngModel
-          required
-          #number="ngModel"
-          disabled/>
+          <input
+            class="form-control"
+            type="number"
+            min="0"
+            max="10000000000"
+            placeholder="Enter number"
+            name="question{{ i }}"
+            ngModel
+            required
+            #number="ngModel"
+            disabled
+          />
         </div>
 
         <!-- Date -->
         <div *ngIf="input.type === 'date'" class="form-group">
-          <label for="DateQuestion" class="question-label"
+          <label for="DateQuestion{{ i }}" class="question-label"
             >{{ i + 1 }}. {{ input.label }}</label
           >
 
@@ -177,6 +240,22 @@
             disabled
           />
         </div>
+        <!-- textarea -->
+        <!-- <div *ngIf="input.type === 'textarea'" class="form-group">
+          <label for="textarea{{ i }}" class="question-label">
+            {{ i+1 }}. {{ input.label}}
+          </label>
+          <input
+          class="form-control"
+          type="text"
+          placeholder="Enter response"
+          name="question{{ i }}"
+          ngModel
+          required
+          #textarea="ngModel"
+          disabled
+        />
+        </div> -->
 
         <!-- Radio -->
         <div *ngIf="input.type === 'radio'">
@@ -190,7 +269,9 @@
                 name="optradio"
                 id="radioButtonOption{{ z }}"
               />
-              <label for="radioButtonOption{{ z }}" class="ps-2">{{ option }}</label>
+              <label for="radioButtonOption{{ z }}" class="ps-2">{{
+                option
+              }}</label>
             </div>
           </div>
         </div>
@@ -207,11 +288,12 @@
                 name="optcheckbox"
                 id="checkBoxOption{{ z }}"
               />
-              <label for="checkBoxOption{{ z }}" class="ps-2">{{ option }}</label>
+              <label for="checkBoxOption{{ z }}" class="ps-2">{{
+                option
+              }}</label>
             </div>
           </div>
         </div>
-
 
         <!-- Select -->
         <div *ngIf="input.type === 'select'">
@@ -234,7 +316,9 @@
       <ng-template [ngIf]="dynamicInputs.length > 0">
         <div style="height: 30px">
           <button type="submit" class="btn clk-button-add">Save</button>
-          <button type="submit" class="btn clk-button-add" (click)="onCancel()">Cancel</button>
+          <button type="submit" class="btn clk-button-add" (click)="onCancel()">
+            Cancel
+          </button>
         </div>
       </ng-template>
     </form>

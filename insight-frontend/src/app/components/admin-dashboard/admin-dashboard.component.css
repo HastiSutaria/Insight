@@ -6,41 +6,12 @@
 }
 
 .clk-button:hover {
-background-color: #3aafa9;
-}
-.hovertext:before {
-  content: attr(data-hover);
-  visibility: hidden;
-  opacity: 0;
-  width: max-content;
-  background-color: #eee;
-  color: black;
-  text-align: center;
-  border-radius: 5px;
-  padding: 5px 5px;
-  transition: opacity 1s ease-in-out;
-
-  position: absolute;
-  z-index: 1;
-  left: 0.5;
-  top: 105%;
-}
-
-
-.onhover:hover{
-  background-color: #3aafa9
-}
-.hovertext:hover:before {
-  opacity: 1;
-  visibility: visible;
+  background-color: #3aafa9;
 }
 
 .card:hover {
   box-shadow: 0 20px 27px 0 rgba(2, 66, 66, 0.1);
-}
-.card-header {
-  background-color: #2b7a78;
-  color: white;
+  
 }
 
 .adminheader {
@@ -51,11 +22,47 @@ h1 {
   margin: 0;
 }
 
+.surveyIcon{
+  background-color: #ecf8f8;
+  color: #2b7a78;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin: 12px;
+  text-align: center;
+  vertical-align: middle; 
+  text-decoration: none;
+  display: table-cell;
+  cursor: pointer;
 
+}
 
-.bi-list{
-  font-size: 30px;
-  font-weight: bolder;
+.surveyIcon:hover{
+  background-color: #2b7a78;
+  color: #ecf8f8;
+  text-decoration: none;
+}
+
+.iconsize{
+font-size: 1.5rem;
+
+}
+ a:hover, a:focus, a:active {
+  text-decoration: none;
   color: white;
+}
+a::after, a{
+  text-decoration: none;
+  color:#2b7a78
+}
+
+.card-title{
   cursor: pointer;
 }
+.card{
+ border-left: 10px solid #2b7a78;
+ height: 80px;
+
+ background-color: #ecf8f8;
+}
+

@@ -43,3 +43,7 @@ body {
   width: 280px;
   min-height: 215px;
 }
+.card:hover {
+  box-shadow: 0 20px 27px 0 rgba(2, 66, 66, 0.1);
+  
+}

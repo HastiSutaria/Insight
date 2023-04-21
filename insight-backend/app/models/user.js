@@ -22,7 +22,16 @@ const UserSchema = new Schema({
     acceptTerms: {
       type: Boolean,
       required: true
+    },
+    profilePath: {
+      type: String,
+      default : ''
+    },
+    token: {
+      type: String,
+      default: ''
     }
+
     
   },
   { timestamps: true })

@@ -1,9 +1,7 @@
-
 <div class="container w-75 p-5">
-
   <div class="card mb-5">
     <h1 class="card-header inputstyle">
-      {{ form?.name  }}
+      {{ form?.name }}
     </h1>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
@@ -34,142 +32,195 @@
       >
     </div>
 
-      <div *ngFor="let input of questions; let i = index">
-        <div *ngIf="input.type === 'paragraph'" class="form-group">
-          <label class="surveyQuestions" for="paragraph{{ i }}">{{ i + 1 }}. {{ input.label }}</label>
+    <div *ngFor="let input of questions; let i = index">
+      <div *ngIf="input.type === 'paragraph'" class="form-group">
+        <label class="surveyQuestions" for="paragraph{{ i }}"
+          >{{ i + 1 }}. {{ input.label }}</label
+        >
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Enter response"
+          name="{{ input.label }}"
+          ngModel
+          required
+        />
+      </div>
+
+      <!--   textarea -->
+      <div *ngIf="input.type === 'textarea'" class="form-group">
+        <label class="surveyQuestions" for="textarea{{ i }}">
+          {{ i + 1 }}. {{ input.label }}
+        </label>
+        <ckeditor
+          [editor]="Editor"
+          ngModel
+          name=" {{ input.label }}"
+          required
+        ></ckeditor>
+      </div>
+
+      <!-- Slide Toggle -->
+      <div *ngIf="input.type === 'toggle'" class="form-group">
+        <label class="surveyQuestions" for="toggle{{ i }}"
+          >{{ i + 1 }}. {{ input.label }}</label
+        >
+        <mat-slide-toggle
+          [ngModel]="false"
+          class="mx-2"
+          name="{{ input.label }}"
+        ></mat-slide-toggle>
+      </div>
+
+      <div *ngIf="input.type === 'slider'" class="form-group">
+        <label class="surveyQuestions" for="slider{{ i }}"
+          >{{ i + 1 }}. {{ input.label }}</label
+        >
+        <mat-slider
+          style="margin-left: 20px"
+          min="0"
+          max="1000"
+          step="10"
+          showTickMarks
+          discrete
+          [displayWith]="formatLabel"
+        >
+          <input name="{{ input.label }}" matSliderThumb ngModel required />
+        </mat-slider>
+      </div>
+
+      <div *ngIf="input.type === 'number'" class="form-group">
+        <label class="surveyQuestions" for="number{{ i }}"
+          >{{ i + 1 }}. {{ input.label }}</label
+        >
+        <input
+          class="form-control"
+          type="number"
+          min="0"
+          max="10000000000"
+          placeholder="Enter number"
+          name="{{ input.label }}"
+          ngModel
+          required
+        />
+      </div>
+
+      <div *ngIf="input.type === 'tel'" class="form-group">
+        <label class="surveyQuestions" for="number{{ i }}"
+          >{{ i + 1 }}. {{ input.label }}</label
+        >
+        <input
+          class="form-control"
+          type="tel"
+          pattern="[0-9]{10}"
+          placeholder="Enter 10 digit contact number"
+          name="{{ input.label }}"
+          ngModel
+          required
+        />
+      </div>
+
+      <div *ngIf="input.type === 'date'" class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label class="surveyQuestions" for="date{{ i }}"
+            >{{ i + 1 }}. {{ input.label }}</mat-label
+          >
           <input
-            class="form-control"
-            type="text"
-            placeholder="Enter response"
-            name="{{ input.label }}"
+            class="form-control w-25"
+            matInput
             ngModel
+            name="{{ input.label }}"
+            [matDatepicker]="picker"
+            (click)="picker.open()"
             required
           />
-        </div>
-        
-        
-          <div *ngIf="input.type === 'number'" class="form-group">
-            <label class="surveyQuestions" for="number{{ i }}">{{ i + 1 }}. {{ input.label }}</label>
-            <input
-              class="form-control"
-              type="number"
-              min="0" max="10000000000"
-              placeholder="Enter number"
-              name="{{ input.label }}"
-              ngModel
-              required
-            />
+
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="input.type === 'radio'">
+        <label class="surveyQuestions" for="radioButtonQuestion"
+          >{{ i + 1 }}. {{ input.label }}</label
+        >
+
+        <div *ngFor="let option of input.options; let z = index">
+          <div class="radio m-2">
+            <label for="radioButtonOption{{ z }}"
+              ><input
+                class="m-1"
+                type="radio"
+                name="{{ input.label }}"
+                id="radioButtonOption{{ z }}"
+                value="{{ option }}"
+                ngModel
+                required
+              />{{ option }}</label
+            >
           </div>
-
-
-        
-          <div *ngIf="input.type === 'tel'" class="form-group">
-            <label class="surveyQuestions" for="number{{ i }}">{{ i + 1 }}. {{ input.label }}</label>
-            <input
-              class="form-control"
-              type="tel"
-              pattern="[0-9]{10}"
-              placeholder="Enter 10 digit contact number"
-              name="{{ input.label }}"
-              ngModel
-              required
-            />
-          </div>
-          
-
-        <div *ngIf="input.type === 'date'" class="form-group">
-          <!-- <label class="surveyQuestions" for="date{{ i }}">{{ i + 1 }}.  {{input.label}}</label><br> -->
-          <mat-form-field appearance="outline">
-            <mat-label class="surveyQuestions" for="date{{ i }}">{{ i + 1 }}.  {{input.label}}</mat-label>
-            <input
-            class="form-control w-25"
-              matInput
-              ngModel
-              name="{{ input.label }}"
-              [matDatepicker]="picker"
-              (click)="picker.open()"
-              required
-            />
-            <!-- <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle> -->
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          
-        </div>
-
-        <div *ngIf="input.type === 'radio'">
-          <label class="surveyQuestions" for="radioButtonQuestion">{{ i + 1 }}.  {{ input.label }}</label>
-
-          <div *ngFor="let option of input.options; let z = index">
-            <div class="radio m-2">
-              <label for="radioButtonOption{{ z }}"
-                ><input class="m-1"
-                  type="radio"
-                  name="{{ input.label }}"
-                  id="radioButtonOption{{ z }}"
-                  value="{{ option }}"
-                  ngModel
-                  required
-                />{{ option }}</label
-              >
-            </div>
-          </div>
-        </div>
-
-        <div *ngIf="input.type === 'checkbox'">
-          <label class="surveyQuestions" for="checkBoxQuestion">{{ i + 1 }}.  {{ input.label }}</label>
-
-          <div *ngFor="let option of input.options; let z = index">
-            <div class="checkbox m-2">
-              <label for="checkBoxOption{{ z }}"
-                ><input class="m-1"
-                  type="checkbox"
-                  name="{{ input.label }}"
-                  id="checkBoxOption{{ z }}"
-                  value="{{ option }}"
-                  ngModel
-                  required
-                />{{ option }}</label
-              >
-            </div>
-          </div>
-        </div>
-
-
-
-        <div *ngIf="input.type === 'select'">
-          <label class="surveyQuestions" for="selectInputQuestion">{{ i + 1 }}.  {{ input.label }}</label>
-          <select
-            name="{{ input.label }}"
-            class="form-select"
-            id="selectInputQuestion"
-            ngModel
-            required
-            #select="ngModel"
-          >
-            <option selected>Select Type of Input</option>
-            <option *ngFor="let option of input.options" value="{{ option }}">
-              {{ option }}
-            </option>
-          </select>
-          <span *ngIf="!select.valid && select.touched" class="help-block"
-            >Please enter valid Response</span
-          >
         </div>
       </div>
+
+      <!-- Checkbox -->
+      <div *ngIf="input.type === 'checkbox'">
+        <label class="surveyQuestions" for="checkBoxQuestion"
+          >{{ i + 1 }}. {{ input.label }}</label
+        >
+
+        <div *ngFor="let option of input.options; let z = index">
+          <div class="checkbox m-2">
+            <label for="checkBoxOption{{ z }}"
+              ><input
+                class="m-1"
+                type="checkbox"
+                name="{{ input.label }}"
+                id="checkBoxOption{{ z }}"
+         
+                value="{{ option }}"
+               ngModel
+                required
+              />{{ option }}</label
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Single Select -->
+      <div *ngIf="input.type === 'select'">
+        <label class="surveyQuestions" for="selectInputQuestion"
+          >{{ i + 1 }}. {{ input.label }}</label
+        >
+        <select
+          name="{{ input.label }}"
+          class="form-select"
+          id="selectInputQuestion"
+          ngModel
+          required
+          #select="ngModel"
+        >
+          <option selected>Select Type of Input</option>
+          <option *ngFor="let option of input.options" value="{{ option }}">
+            {{ option }}
+          </option>
+        </select>
+        <span *ngIf="!select.valid && select.touched" class="help-block"
+          >Please enter valid Response</span
+        >
+      </div>
+    </div>
+
+    <!-- Cancel/Save -->
     <div class="text-end">
       <button type="submit" class="btn clk-button-add" (click)="onCancel()">
         Cancel
       </button>
       <button
-      [disabled]="!surveyForm.valid"
-      type="submit"
-      class="btn clk-button-add"
-    >
-      Save
-    </button>
+        [disabled]="!surveyForm.valid"
+        type="submit"
+        class="btn clk-button-add"
+      >
+        Save
+      </button>
     </div>
   </form>
 </div>

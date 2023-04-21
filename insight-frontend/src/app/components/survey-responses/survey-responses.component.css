@@ -23,3 +23,8 @@
   .heading{
     display: flex;
   }
+ 
+  .table-header{
+    background-color: #def2f1;
+  }
+

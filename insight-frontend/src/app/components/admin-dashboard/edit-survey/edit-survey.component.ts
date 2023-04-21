@@ -3,6 +3,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormDataService } from 'src/app/services/form-data.service';
 import { Question } from '../../../../../../insight-backend/app/models/question.js';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-edit-survey',
@@ -15,7 +16,7 @@ export class EditSurveyComponent {
   questions: [] = [];
   formName: string;
   description: string;
-
+  public Editor = ClassicEditor;
   constructor(
     private formService: FormDataService,
     private route: ActivatedRoute,
@@ -36,6 +37,13 @@ export class EditSurveyComponent {
       });
     });
   }
+  formatLabel(value: number): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return `${value}`;
+  } 
 
   editQuestion(ind: number, label: string) {
     setTimeout(() => {

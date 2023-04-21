@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormDataService } from 'src/app/services/form-data.service';
-
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-new-survey',
@@ -24,13 +24,20 @@ export class NewSurveyComponent implements OnInit {
   FinalBody: any = {};
   addingInputElement: Boolean = false;
   dynamicInputs = [];
+  public Editor = ClassicEditor;
 
-  inputTypes: string[] = ['paragraph','checkbox', 'date', 'radio', 'select', 'tel', 'number', ];
+  inputTypes: string[] = ['paragraph','checkbox', 'date', 'radio', 'select', 'tel', 'number', 'toggle', 'slider', 'textarea'];
 
   constructor(private activatedRoute: ActivatedRoute, private formDataService: FormDataService, private router: Router, private toastr: ToastrService) {}
   isButtonDisabled = true; // Initialize button1 as disabled
 
- 
+  formatLabel(value: number): string {
+    if (value >= 1000) {
+      return Math.round(value / 1000) + 'k';
+    }
+
+    return `${value}`;
+  } 
   onOptionAdded() {
     // Option added event handler
     console.log('Option added');

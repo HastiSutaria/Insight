@@ -3,21 +3,21 @@ const Questions = require("../models/question");
 const User = require("../models/user");
 const randomString = require("randomstring");
 const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const { use } = require("../routes/routes");
+const multer = require("multer");
+const path = require('path')
+
+
 
 module.exports = {
   register: async (req, res) => {
     let userData = req.body;
-    await User.findOne({ email: userData.email })
-      .then((user) => {
-        if (user) {
-          res.status(400).send("You have already registered!");
-          return;
-        }
-      })
-      .catch((err) => {});
+    await User.findOne({ email: userData.email }).then((user) => {
+      if (user) {
+        res.status(400).send("You have already registered!");
+        return;
+      }
+    });
 
     let user = new User({
       fullname: req.body.fullname,
@@ -25,15 +25,24 @@ module.exports = {
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
       acceptTerms: req.body.acceptTerms,
-      role: req.body.role,
     });
     await user
       .save()
-      .then((registeredUser) => {
+      .then(async (registeredUser) => {
         console.log("RegUser:", registeredUser);
         let payload = { subject: registeredUser._id };
         let token = jwt.sign(payload, "secretKey");
         res.status(200).send({ token });
+
+        user.token = token;
+        await user
+          .save()
+          .then(() => {
+            console.log("Token Saved");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -42,27 +51,146 @@ module.exports = {
 
   login: async (req, res) => {
     let userData = req.body;
-	
+
     await User.findOne({ email: userData.email })
-      .then((user) => {
-		var passwordIsValid = bcrypt.compareSync(
-			req.body.password,
-			user.password
-		  );
+      .then(async (user) => {
+        var passwordIsValid = bcrypt.compareSync(
+          req.body.password,
+          user.password
+        );
         if (!user) {
           res.status(401).send("Invalid Email");
         } else if (!passwordIsValid) {
           res.status(401).send("Invalid Password");
         } else {
-          let username = user.username
+          let username = user.username;
+
           let payload = { subject: user.__v };
           let token = jwt.sign(payload, "secretKey");
+          user.token = token;
+          await user.save().then(() => {
+            console.log("token updated");
+          });
           res.status(200).send({ token, username });
         }
       })
       .catch((err) => {
         console.log(err);
       });
+  },
+
+  profile: async (req, res) => {
+    try {
+      console.log('----- Profile Fetched -------')
+      const token = req.headers.authorization.replace("Bearer ", "");
+      console.log("token: ", token);
+
+      await User.findOne({ token }).then((user) => {
+        console.log("user: ", user);
+
+        res.status(200).json({ user });
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+    }
+  },
+
+  editProfile: async (req, res) => {
+    try {
+      console.log('------ edit Profile Fetched --------------')
+      const token = req.headers.authorization.replace("Bearer ", "");
+      if (req.body.password !== "") {
+        await User.updateOne(
+          { token },
+          {
+            fullname: req.body.fullname,
+            username: req.body.username,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, 8),
+          }
+        )
+          .then(() => {
+            console.log("edited profile and password");
+            res.status(201).json({ msg: "edited profile and password" });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        await User.updateOne(
+          { token },
+          {
+            fullname: req.body.fullname,
+            username: req.body.username,
+            email: req.body.email,
+          }
+        )
+          .then((data) => {
+            console.log("edited profile");
+            res.status(201).json({ msg: "edited profile", data });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    } catch (error) {
+      res
+        .status(error.statusCode)
+        .json({ status: error.statusCode, error: error.message });
+    }
+  },
+
+  profilePicture: async (req, res) => {
+    try {
+      console.log('------ Get Profile Picture----------')
+      const token = req.headers.authorization.replace("Bearer ", "");
+      console.log(token)
+      await User.findOne({ token }).then((user) => {
+        if (!user) {
+          return res.status(404).json({ error: "User not found" });
+        }
+        if (!user.profilePath) {
+          return res.status(404).json({ error: "Profile picture not found" });
+        }
+        res.sendFile(user.profilePath);
+        console.log('working', user.profilePath)
+      });
+
+      // res.set('Content-Type', 'image/png')
+      // res.send(user.avatar)
+    } catch (e) {
+      console.log(e)
+      res.status(404).send(e);
+    }
+  },
+
+  profilePictureEdit: async (req, res) => {
+    try {
+      //   const buffer = await sharp(req.file.buffer).resize({ width: 230, height: 223 }).png().toBuffer()
+      // req.user.avatar = buffer
+      // await req.user.save()
+      // res.send()
+   
+      const token = req.headers.authorization.replace("Bearer ", "");
+      await User.findOne({token}).then(async (user) =>{
+        if (!user) {
+          return res.status(404).json({ error: "User not found" });
+        }
+  
+        const profilePicturePath = path.join(__dirname, '../../app/utils/storage/images/', req.file.filename);
+        console.log(profilePicturePath)
+        user.profilePath = profilePicturePath;
+        await user.save();
+  
+        res.status(201).json({ message: "Profile picture updated successfully", profilePicturePath });
+      })
+     
+
+     
+    } catch (error) {
+      console.log(error.message);
+    }
   },
 
   createSurvey: async (req, res) => {
