@@ -15,7 +15,7 @@ export class FillSurveyComponent implements OnInit {
   form: any;
   questions: [] = [];
   result: any = { responses: [] };
-  checkboxValues: any[] = []
+
   selectedValues: string[] = [];
 
   public Editor = ClassicEditor;
@@ -33,13 +33,9 @@ export class FillSurveyComponent implements OnInit {
 
     return `${value}`;
   }
+
   
-  // getSelectedValues(input) {
-  //   this.selectedValues = input.options
-  //     .filter(option => option.selected)
-  //     .map(option=> option.value);
-  // }
-  
+
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.key = params['key'];
@@ -49,17 +45,12 @@ export class FillSurveyComponent implements OnInit {
         this.questions = this.form.questions;
         console.log(this.form.questions);
         
-        // this.questions.map((question: { type: string; label: any }) => {
-        //   // console.log('Question', question);
-          
-        //   if (question.type === 'checkbox') {
-        //     this.checkboxValues.push({
-        //       label: question.label,
-        //       selectedOptions: [],
-        //     });
-        //   }
-        // });
-        // console.log(this.checkboxValues);
+        this.questions.map((question: { type: string; label: any }) => {
+    
+        });
+    
+
+        
       });
     });
     
@@ -70,6 +61,7 @@ export class FillSurveyComponent implements OnInit {
     this.result['key'] = this.key;
 
     for (const label in surveyForm.value) {
+  
       if (label !== 'email') {
         this.result.responses.push({
           email: surveyForm.value.email,
@@ -90,7 +82,3 @@ export class FillSurveyComponent implements OnInit {
     });
   }
 }
-/* 
-response: {key/name: 'email/DOB/gender', value: 'M/F', type: '124322'}
-
-*/

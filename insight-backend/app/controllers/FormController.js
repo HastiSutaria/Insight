@@ -285,25 +285,49 @@ module.exports = {
   },
 
   updateSurvey: async (req, res) => {
-    try {
-      const data = req.params;
-      console.log(data);
+    // try {
+    //   const data = req.params;
+    //   console.log(data);
 
-      if (!data.key) {
-        throw { statusCode: 404, message: "MISSING_PARAMS" };
-      }
-      const form = await Form.findByIdAndUpdate({ key: data.key });
+    //   if (!data.key) {
+    //     throw { statusCode: 404, message: "MISSING_PARAMS" };
+    //   }
+    //   const form = await Form.findByIdAndUpdate({ key: data.key });
 
-      await Questions.findByIdAndUpdate({ _id: { $in: form.questions } });
+    //   await Questions.findByIdAndUpdate({ _id: { $in: form.questions } });
+
+    //   if (!form) {
+    //     throw { statusCode: 404, message: "Form_NOT_FOUND" };
+    //   }
+    // } catch (error) {
+    //   res
+    //     .status(error.statusCode)
+    //     .json({ status: error.statusCode, error: error.message });
+    // }
+    const { formId } = req.params.id;
+    const { name, description, questionIds } = req.body;
+    console.log(req.body) 
+    try{
+      const form = await Form.findById(formId);
 
       if (!form) {
-        throw { statusCode: 404, message: "Form_NOT_FOUND" };
+
+        return res.status(404).json({ error: 'Form not found' });
       }
-    } catch (error) {
-      res
-        .status(error.statusCode)
-        .json({ status: error.statusCode, error: error.message });
+      const questions = await Questions.find({ _id: { $in: questionIds } });
+      form.name = name;
+      form.description = description;
+      form.questions = questions.map(question => question._id);
+  
+      await form.save();
+  
+      res.json(form);
     }
+    catch (err) {
+
+      res.status(500).json({ error: err.message });
+    }
+
   },
   deleteSurvey: async (req, res) => {
     try {

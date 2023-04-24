@@ -88,6 +88,7 @@ export class SurveyAnalyticsComponent implements OnInit, OnDestroy{
       }
       return colors;
     };
+  
 
     this.chart = new Chart(context, {
       type: 'pie', //this denotes tha type of chart
@@ -110,6 +111,9 @@ export class SurveyAnalyticsComponent implements OnInit, OnDestroy{
     });
   }
   ngOnDestroy(): void {
+    //   if (this.chart) {
+    //   this.chart.destroy();
+    // }
       
   }
 }

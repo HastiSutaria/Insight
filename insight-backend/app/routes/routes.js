@@ -17,7 +17,7 @@ router.get("/surveys", FormController.getSurveys);
 
 router.post("/survey/response", FormController.saveSurveyResponse);
 router.get("/survey/:key/responses", FormController.getSurveyResponses);
-
+router.post("editSurvey/:id", FormController.updateSurvey)
 router.post("/survey/editQuestion/:id", FormController.editQuestion)
 
 router.delete("/survey/:key", FormController.deleteSurvey)

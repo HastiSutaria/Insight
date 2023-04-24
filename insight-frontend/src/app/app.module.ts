@@ -27,6 +27,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { SurveyAnalyticsComponent } from './components/admin-dashboard/survey-analytics/survey-analytics.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { HtmlToRawHtmlPipe } from './components/survey-responses/html-to-raw-html.pipe'; // Update the path to the location of your custom pipe
+
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     HomeComponent,
     SurveyAnalyticsComponent,
     ProfileComponent,
+    HtmlToRawHtmlPipe,
   ],
   imports: [
     BrowserModule,

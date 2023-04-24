@@ -177,7 +177,8 @@
                 id="checkBoxOption{{ z }}"
          
                 value="{{ option }}"
-               ngModel
+       ngModel
+                (change)="onCheckboxChange(option)"
                 required
               />{{ option }}</label
             >

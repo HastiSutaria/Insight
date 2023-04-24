@@ -21,13 +21,13 @@
             <h5 class="card-title mt-2">{{ survey.name }}</h5>
           </div>
           <div class="d-flex">
-            <a class="me-3 surveyIcon" [routerLink]="editSurvey(i)">
+            <a class="surveyIcon" [routerLink]="editSurvey(i)">
               <i class="bi bi-pencil-square iconsize"></i>
             </a>
             <a class="surveyIcon" [routerLink]="getResponses(i)">
               <i class="bi bi-eye-fill iconsize"></i>
             </a>
-            <div class="dropdown ms-3 surveyIcon">
+            <div class="dropdown  surveyIcon">
               <a data-bs-toggle="dropdown">
                 <i class="bi bi-three-dots-vertical iconsize"></i>
               </a>

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormDataService } from 'src/app/services/form-data.service';
 
 import { MatPaginator } from '@angular/material/paginator';
@@ -22,8 +22,10 @@ export class SurveyResponsesComponent implements OnInit, AfterViewInit {
   emails: string[] = [];
   dynamicData = [];
   dynamicColumns: string[] = ['No.', 'Email'];
+  dynamicColumnType: string[] = ['number', 'email']
 
   dataSource = new MatTableDataSource(this.dynamicData);
+
   @ViewChild(MatPaginator, { static: false })
   set paginator(value: MatPaginator) {
     if (this.dataSource) {
@@ -48,7 +50,8 @@ export class SurveyResponsesComponent implements OnInit, AfterViewInit {
   constructor(
     private activateRoute: ActivatedRoute,
     private formService: FormDataService,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private router: Router
   ) {}
 
   announceSortChange(sortState: Sort) {
@@ -60,6 +63,7 @@ export class SurveyResponsesComponent implements OnInit, AfterViewInit {
   }
   ngOnInit(): void {
     console.log(this.dynamicColumns);
+    console.log(this.dynamicColumnType);
 
     this.activateRoute.params.subscribe((params) => {
       // Identifying the key and searching the form responses based on it
@@ -73,8 +77,10 @@ export class SurveyResponsesComponent implements OnInit, AfterViewInit {
         this.form.questions.map(
           (question: { responses: any[]; label: string; type: string }) => {
             // Adding Columns to display on table
-            this.dynamicColumns.push(question.label);
 
+
+            this.dynamicColumns.push(question.label);
+            this.dynamicColumnType.push(question.type);
             // Extracting Emails from the data
             question.responses.map((response) => {
               this.emails.push(response.email);
@@ -106,4 +112,6 @@ export class SurveyResponsesComponent implements OnInit, AfterViewInit {
   saveToExcel() {
     this.formService.exportAsExcelFile(this.dynamicData, this.form.name);
   }
+
+ 
 }
